@@ -10,7 +10,6 @@ import HeaderNavigation from './components/HeaderNavigation.vue'
 <template>
   <HeaderNavigation></HeaderNavigation>
   <RouterView class="mainview"></RouterView>
-  
 </template>
 
 <style scoped>
@@ -25,7 +24,7 @@ import HeaderNavigation from './components/HeaderNavigation.vue'
   margin: auto;
   max-width: 1280px;
   padding: 0 2rem;
-  padding-top: 55px;
+  padding-top: 60px;
   max-height: 100vh;
 }
 

@@ -20,4 +20,4 @@ const app = createApp(App)
 app.use(router)
 app.use(PrimeVue);
 
-app.mount('#app')
+router.isReady().then(()=>app.mount('#app'))

@@ -1,0 +1,69 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+
+:root {
+  --main-bg-color: #181818;
+  --main-text-color: rgba(235, 235, 235, 0.64);
+  --main-link-color: rgba(142, 253, 142, 0.67);
+  --main-line-color: rgba(100,100,100,.4);
+  --main-border-color: rgba(255,255,255,0.2);
+  --secondary-link-color: rgba(34,171,34, 0.6);
+}
+
+html[data-theme='light'] {
+  --main-bg-color: white;
+  --main-text-color: #495057;
+  --main-link-color: #007bff;
+  --secondary-link-color: #007bff;
+  --main-line-color: rgba(0, 0, 0, 0.125);
+  --main-border-color: rgba(0,0,0, 0.4);
+}
+
+html[data-theme='dark'] {
+  --main-bg-color: #181818;
+  --main-text-color: rgba(235, 235, 235, 0.64);
+  --main-link-color: rgb(34, 171, 34);
+  --secondary-link-color: rgba(142, 253, 142, 0.67);
+  --main-line-color: rgba(100,100,100,.4);
+  --main-border-color: rgba(255,255,255,0.2);
+}
+
+.load, .load *{
+  -webkit-transition: background-color 0.5s, color 0.5s, border 0.5s;
+  -moz-transition: background-color 0.5s, color 0.5s, border 0.5s;
+  -ms-transition: background-color 0.5s, color 0.5s, border 0.5s;
+  -o-transition: background-color 0.5s, color 0.5s, border 0.5s;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--main-bg-color);
+  --color-text: var(--main-text-color);
+  --border-color: var(--main-border-color);
+  --link-color: var(--main-link-color);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

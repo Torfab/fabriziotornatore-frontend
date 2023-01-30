@@ -1,8 +1,8 @@
 <template>
   <div class="grid">
-    <CardItem title="Didattica" image="progetti" class="col-6"></CardItem>
-    <CardItem title="Progetti" image="progetti" class="col-6"></CardItem>
-    <CardItem title="Blog" image="progetti" class="col-6"></CardItem>
+    <CardItem title="Didattica" image="pi-book" class="col-12 md:col-6"></CardItem>
+    <CardItem title="Progetti" image="pi-sitemap" class="col-12 md:col-6"></CardItem>
+    <CardItem title="Blog" image="pi-chart-line" class="col-12 md:col-6"></CardItem>
   </div>
 </template>
 

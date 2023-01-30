@@ -6,6 +6,8 @@
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/cards">Cards</RouterLink>
         </nav>
+        
+        <ThemeHandler class="mr-3"></ThemeHandler>
       </div>
     </div>
   </header>
@@ -13,7 +15,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import ThemeHandler from "@/Utility/ThemeHandler.vue"
 export default defineComponent({
+  components: {
+    ThemeHandler
+  },
   data() {
     return {
       scrollValue: 0,
@@ -37,11 +43,11 @@ export default defineComponent({
 .outer-header {
 
   padding-left: calc(100vw - 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .outer-header.shadow {
-  box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 1px 5px var(--border-color);
 }
 
 .inner-header {
@@ -75,7 +81,7 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid var(--border-color);
 }
 
 nav a:first-of-type {
