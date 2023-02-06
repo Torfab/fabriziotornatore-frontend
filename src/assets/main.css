@@ -1,4 +1,9 @@
+@import './init.css';
 @import './themeHandler.css';
+
+strong{
+  font-weight: 700;
+}
 
 .d-flex {
   display: flex
@@ -12,7 +17,7 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--main-link-color);
   transition: 0.4s;
 }
 

@@ -1,0 +1,118 @@
+blockquote {
+  padding: 15px 1em 1px 1em;
+  background-color: var(--secondary-bg-color);
+  border-left: 0.25em solid rgb(19,80,121);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  text-align: center;
+}
+
+h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 0.875em;
+}
+
+h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--main-border-color);
+  border: 0;
+}
+
+.markdown-body {
+  width: 650px;
+  margin: auto;
+}
+
+pre {
+  background-color: var(--main-codeblock-bg);
+  padding: 2px 2px  2px  15px;
+  border-radius: 10px;
+}
+
+p>code{
+    color: var(--main-special-word)
+  }
+
+.language-python, .language-cpp, .language-javascript {
+  .macro {
+    color: rgb(181, 206, 168);
+    .keyword {
+      color: rgb(181, 206, 168);
+    }
+    .string {
+      color: rgb(181, 206, 168);
+    }
+  }
+  .string {
+    color: rgb(206, 145, 120)
+  }
+  .keyword {
+    color: rgb(197, 134, 192)
+  }
+  .number {
+    color: rgb(181, 206, 168)
+  }
+  .code-line {
+    color: rgb(156, 220, 254)
+  }
+  .operator {
+    color: white
+  }
+  .function {
+    color: rgb(220, 220, 170)
+  }
+  .builtin {
+    color: rgb(78, 201, 176)
+  }
+  .punctuation {
+    color: rgb(255, 215, 0)
+  }
+  .comment {
+    color: rgb(106, 153, 85)
+  }
+}

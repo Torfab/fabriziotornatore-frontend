@@ -8,15 +8,21 @@
   --main-line-color: rgba(100,100,100,.4);
   --main-border-color: rgba(255,255,255,0.2);
   --secondary-link-color: rgba(34,171,34, 0.6);
+  --main-codeblock-bg: rgba(170, 170, 170, 0.4);
+  --main-special-word: #800684;
+  --secondary-bg-color: #e0e8f0;
 }
 
 html[data-theme='light'] {
   --main-bg-color: white;
-  --main-text-color: #495057;
+  --main-text-color: #000;
   --main-link-color: #007bff;
   --secondary-link-color: #007bff;
   --main-line-color: rgba(0, 0, 0, 0.125);
   --main-border-color: rgba(0,0,0, 0.4);
+  --main-codeblock-bg: rgba(170, 170, 170, 0.4);
+  --main-special-word: #800684;
+  --secondary-bg-color: #e0e8f0;
 }
 
 html[data-theme='dark'] {
@@ -26,6 +32,9 @@ html[data-theme='dark'] {
   --secondary-link-color: rgba(142, 253, 142, 0.67);
   --main-line-color: rgba(100,100,100,.4);
   --main-border-color: rgba(255,255,255,0.2);
+  --main-codeblock-bg: #000;
+  --main-special-word: #c4a23e;
+  --secondary-bg-color: rgb(40,40,40);
 }
 
 .load, .load *{
@@ -62,7 +71,7 @@ body {
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

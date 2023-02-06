@@ -4,33 +4,24 @@
       title="Programmazione"
       image="pi-book"
       class="col-12 md:col-6"
+      @click="goTo('test1')"
     ></CardItem>
-    <VueMarkdown :source="content"></VueMarkdown>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import CardItem from "../components/CardItem.vue";
-import VueMarkdown from "vue-markdown-render";
-import MarkdownIt from "markdown-it";
-
-const md = new MarkdownIt()
+import CardItem from "@/components/CardItem.vue";
 
 export default defineComponent({
   components: {
     CardItem,
-    VueMarkdown,
   },
-  data(){
-    return{
-      content: ''
+  methods: {
+    goTo(route: string){
+      this.$router.push("/didattica/"+route)
     }
-  },
-  mounted() {
-    const file = import('./test.md');
-    console.log("uh")
-
+    
   }
 });
 </script>
