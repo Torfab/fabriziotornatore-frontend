@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MarkdownFormatter :raw="raw"></MarkdownFormatter>
+    <MarkdownFormatter class="blog-article" :raw="raw"></MarkdownFormatter>
   </div>
 </template>
 
@@ -41,4 +41,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.blog-article {
+  width: 650px;
+  margin: auto;
+  padding: 0 2rem;
+}
+</style>
 

@@ -14,9 +14,8 @@
     - [Emphasis](#emphasis)
     - [Code](#code)
 
-
 **Note:** This document is itself written using Markdown; you
-can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
+can [**see** the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
 
 ----
 
@@ -101,8 +100,8 @@ and code blocks:
 
 > ## This is a header.
 > 
-> 1.   This is the first list item.
-> 2.   This is the second list item.
+> *   This is the first list item.
+> *   This is the second list item.
 > 
 > Here's some example code:
 > 
@@ -120,7 +119,7 @@ Markdown supports ordered (numbered) and unordered (bulleted) lists.
 Unordered lists use asterisks, pluses, and hyphens -- interchangably
 -- as list markers:
 
-*   Red
+*   **Red**
 *   Green
 *   Blue
 
@@ -133,6 +132,7 @@ is equivalent to:
 and:
 
 -   Red
+e comunque mbare tagghila
 -   Green
 -   Blue
 
@@ -190,7 +190,6 @@ or one tab:
     Vestibulum enim wisi, viverra nec, fringilla in, laoreet
     vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
     sit amet velit.
-
 2.  Suspendisse id sem consectetuer libero luctus adipiscing.
 
 It looks nice if you indent every line of the subsequent
@@ -297,7 +296,7 @@ __double underscores__
 
 ### Code
 
-To indicate a span of code, wrap it with backtick quotes (`` ` ``).
+To indicate a span of code, wrap it with backtick quotes.
 Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:
 

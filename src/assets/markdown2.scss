@@ -4,6 +4,13 @@ blockquote {
   border-left: 0.25em solid rgb(19,80,121);
 }
 
+li {
+  & p, & pre {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -78,8 +85,13 @@ p>code{
     color: var(--main-special-word)
   }
 
+code{
+  white-space: break-spaces
+}
+
 .language-python, .language-cpp, .language-javascript {
-  .macro {
+  color: rgb(156, 220, 254);
+  .directive {
     color: rgb(181, 206, 168);
     .keyword {
       color: rgb(181, 206, 168);
@@ -97,9 +109,7 @@ p>code{
   .number {
     color: rgb(181, 206, 168)
   }
-  .code-line {
-    color: rgb(156, 220, 254)
-  }
+  
   .operator {
     color: white
   }
@@ -113,6 +123,9 @@ p>code{
     color: rgb(255, 215, 0)
   }
   .comment {
-    color: rgb(106, 153, 85)
+    color: rgb(106, 153, 85);
+    & .string {
+      color: rgb(106, 153, 85);
+    }
   }
 }
