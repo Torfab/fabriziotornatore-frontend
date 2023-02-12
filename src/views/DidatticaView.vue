@@ -4,7 +4,7 @@
       title="Programmazione"
       image="pi-book"
       class="col-12 md:col-6"
-      @click="goTo('test1')"
+      @click="goTo('variabili')"
     ></CardItem>
   </div>
 </template>

@@ -12,7 +12,7 @@ import Clock from "@/components/Clock.vue"
 export default defineComponent({
   data() {
     return {
-      raw: "we" as any
+      raw: "Loading" as any
     }
   },
   components: {

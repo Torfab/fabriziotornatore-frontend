@@ -89,7 +89,22 @@ code{
   white-space: break-spaces
 }
 
-.language-python, .language-cpp, .language-javascript {
+td{
+  text-align: right;
+  border-right: 1px solid var(--main-border-color);
+  border-bottom: 1px solid var(--main-border-color);
+  padding: 2px 10px;
+  &:first-child{
+    border-left: 1px solid var(--main-border-color)
+  }
+}
+
+th{
+  font-weight: 650;
+  border-bottom: 1px solid var(--main-border-color)
+}
+
+.language-python, .language-cpp, .language-javascript, .language-json {
   color: rgb(156, 220, 254);
   .directive {
     color: rgb(181, 206, 168);

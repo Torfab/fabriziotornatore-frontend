@@ -28,7 +28,15 @@ const languages = {
     operator: ["=", "/", "%", "+", "-", "*", "<", ">", "!", "|"],
     comment: "//",
     directive: "#"
-  } as Language
+  } as Language,
+  "json": {
+    keyword: [],
+    punctuation:["(", ")", "[", "]", "{","}", ":", ",", ";"], 
+    builtin:[], 
+    operator: ["=", "/", "%", "+", "-", "*", "<", ">", "!", "|"],
+    comment: "noComment",
+    directive: "noDirective"
+  }
 } as LanguageList
 
 export function getKeywords(language: string, keyword: string): Array<string>{

@@ -24,14 +24,16 @@ export default defineComponent({
       continue: false,
       kindOfOrderList: "",
       totalRender: "",
-      language: "python"
+      language: "python",
+      isTable: false,
+      tableLength: -1
     };
   },
   methods: {
     checkCode(firstElement: string): string | undefined {
       if (firstElement.startsWith("```") && !this.isTotalCode) {
         this.isTotalCode = true;
-        this.language=firstElement.substring(3)
+        this.language=firstElement.substring(3)||"python"
         return `<pre class="language-${this.language}"><code>`;
       }
       if (this.isTotalCode && firstElement === "```") {
@@ -69,6 +71,8 @@ export default defineComponent({
       this.totalRender="";
       this.isTotalCode=false;
       this.language="python";
+      this.isTable=false;
+      this.tableLength=-1;
     },
     checkBlockQuote(row: string){
       let tempResult=""
@@ -111,6 +115,32 @@ export default defineComponent({
       }  
       return
     },  
+    checkTable(row:string){
+      let splitted=row.split("|")
+      if(splitted.length>2){
+        if(!this.isTable){
+          this.isTable=true
+          this.tableLength=splitted.length-1
+          let tempResult="<thead>"
+          for(let i=1; i<this.tableLength; i++){
+            tempResult=tempResult.concat(`<th>${splitted[i]}</th>`)
+          }
+          tempResult=tempResult.concat("</thead>")
+          return `<table>${tempResult}`
+        } else {
+          if(this.totalRender.endsWith("</thead>")){
+            return " "
+          }
+          let minTD=Math.min(this.tableLength, splitted.length-1)
+          let tempResult="<tr>"
+            for(let i=1; i<minTD; i++){
+            tempResult=tempResult.concat(`<td>${splitted[i]}</td>`)
+          }
+          tempResult=tempResult.concat("</tr>")
+          return `${tempResult}`            
+        }
+      }
+    },
     checkList(firstElement: string, row: string) {
       
       let tempResult=""
@@ -180,6 +210,16 @@ export default defineComponent({
           return totalRender.concat(checkBreak)
         }
         
+        let checkTable=this.checkTable(row)
+        if(checkTable!=undefined){
+          return totalRender.concat(checkTable)
+        }
+        if(this.isTable){
+          this.isTable=false;
+          this.tableLength=-1;
+
+          totalRender=totalRender.concat("</table>aaaaaaa")
+        }
         return totalRender.concat(this.renderLine(firstElement, row))
     },
     renderRawMD(raw: string) {
@@ -367,11 +407,16 @@ export default defineComponent({
     },
     buildLineLink(line: string){
       if(line.includes("](")){
+        let isImage=line[line.indexOf("[")-1]=="!"
         let start=line.indexOf("[")+1
         let end= line.indexOf("]")
         let realEnd= line.indexOf(")")
         let slice=line.slice(start, end)
-        line=`${this.spanFormat(line.slice(0, start-1))}<a href="${line.slice(end+2,realEnd)}">${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+        if(isImage){
+          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto" src="${line.slice(end+2,realEnd)}" alt="${slice}"></img></div>${this.buildLineLink(line.slice(realEnd+1))}`
+        } else {
+          line=`${this.spanFormat(line.slice(0, start-1))}<a href="${line.slice(end+2,realEnd)}">${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+        }
       }
       return line;
     },
