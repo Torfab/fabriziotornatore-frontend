@@ -4,16 +4,14 @@ import { defineConfig } from "vite";
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
 import { code, meta, link } from "md-powerpack";
+import vitePluginRaw from 'vite-plugin-raw';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/], // <--
+      include: [/\.vue$/], // <--
     }),
-    Markdown({
-      builders: [code(), meta(), link()]
-    })
   ],
   resolve: {
     alias: {

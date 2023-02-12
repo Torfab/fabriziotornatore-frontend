@@ -1,21 +1,29 @@
 <template>
-  <component :is="dynamicComponent"></component>
+  <div>
+    <MarkdownFormatter class="blog-article" :raw="raw"></MarkdownFormatter>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MarkdownFormatter from "@/components/MarkdownFormatter.vue"
+import Clock from "@/components/Clock.vue"
 
 export default defineComponent({
   data() {
     return {
-      dynamicComponent: undefined as any
+      raw: "Loading" as any
     }
+  },
+  components: {
+    MarkdownFormatter,
+    Clock
   },
   methods: {
     updateComponent(param: string) {
       // The dynamic import
-      import(`@/mdFiles/${param}.md`).then((module: any) => {
-        this.dynamicComponent = module.default;
+      import(`@/mdFiles/${param}.md?raw`).then((module: any) => {
+        this.raw=module.default
       })
     }
   },
@@ -33,4 +41,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.blog-article {
+  width: 650px;
+  margin: auto;
+  padding: 0 2rem;
+}
+</style>
 
