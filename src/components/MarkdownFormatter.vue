@@ -1,10 +1,11 @@
 <template>
-  <div v-html="renderedMd"></div>
+  <component markRaw v-if="display" :is="display"/>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, markRaw } from "vue";
 import {getKeywords, getWholeLineSymbol} from "@/Utility/markdownLanguageHandler"
+
 
 export default defineComponent({
   props: {
@@ -15,9 +16,11 @@ export default defineComponent({
   },
   data() {
     return {
+      display: undefined as any,
       isCode: false,
       isTotalCode: false,
       isMeta: false,
+      metadati: {},
       listDeep: 0,
       isParagraph: false,
       blockQuoteDeep: -1,
@@ -26,7 +29,7 @@ export default defineComponent({
       totalRender: "",
       language: "python",
       isTable: false,
-      tableLength: -1
+      tableLength: -1,
     };
   },
   methods: {
@@ -73,6 +76,10 @@ export default defineComponent({
       this.language="python";
       this.isTable=false;
       this.tableLength=-1;
+      this.metadati={} as {
+        [key: string]: string
+      };
+      
     },
     checkBlockQuote(row: string){
       let tempResult=""
@@ -183,7 +190,8 @@ export default defineComponent({
     },
     renderRow(row:string){
       let totalRender=""
-      let firstElement = row.trimStart().split(" ")[0];
+      let splitted = row.trimStart().split(" ");
+      let firstElement = splitted[0];
         let skip = this.toggleMeta(firstElement);
         if(firstElement===""){
           if(this.isParagraph){
@@ -192,6 +200,9 @@ export default defineComponent({
           }
         }
         if (this.isMeta || skip) {
+          if(firstElement[firstElement.length-1]==":"){
+            (this.metadati as any)[firstElement.substring(0, firstElement.length-1)]= splitted.slice(1).join(" ")
+          }
           return totalRender
         }
 
@@ -239,6 +250,10 @@ export default defineComponent({
         this.totalRender=this.totalRender.concat(renderRow)
 
       });
+      this.$emit("metadati", this.metadati)
+      if(this.isParagraph){
+        this.totalRender=this.totalRender.concat('</p>')
+      }
       return this.totalRender;
     },
     buildLineCode(line: string){
@@ -288,6 +303,9 @@ export default defineComponent({
       return line
     },
     renderLine(firstElement: string, line: string, skipParagraph=true) {
+      if(this.isParagraph) {
+        this.totalRender=this.totalRender.concat(" ")
+      }
       if(this.isTotalCode){
         return this.codify(line, this.language)
       }
@@ -413,9 +431,17 @@ export default defineComponent({
         let realEnd= line.indexOf(")")
         let slice=line.slice(start, end)
         if(isImage){
-          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto" src="${line.slice(end+2,realEnd)}" alt="${slice}"></img></div>${this.buildLineLink(line.slice(realEnd+1))}`
+          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
         } else {
-          line=`${this.spanFormat(line.slice(0, start-1))}<a href="${line.slice(end+2,realEnd)}">${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+          let internalSplit=line.slice(end+2,realEnd).split(" ");
+          let tooltip=""
+          if(internalSplit.length>1){
+            internalSplit[1]=internalSplit[1].substring(1)
+            internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
+            tooltip=`v-tooltip.top="'${internalSplit.slice(1).join(" ")}'"`
+          }
+          
+          line=`${this.spanFormat(line.slice(0, start-1))}<a href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
         }
       }
       return line;
@@ -469,11 +495,20 @@ export default defineComponent({
       lineSplitted.shift();
       return `<h${heading}>${lineSplitted.join(" ")}</h${heading}>`;
     },
+    updateMD(){
+      this.display=markRaw(defineComponent({
+        template: `<div>${this.renderRawMD(this.raw)}</div>`
+      }))
+    }
   },
-  computed: {
-    renderedMd() {
-      return this.renderRawMD(this.raw);
-    },
+  mounted(){
+    this.updateMD()
   },
+  watch:{
+    raw(){
+      this.updateMD()
+    }
+  }
+  
 });
 </script>

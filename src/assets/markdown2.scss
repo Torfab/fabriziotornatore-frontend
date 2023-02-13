@@ -56,9 +56,13 @@ blockquote,
 ul,
 ol,
 dl,
-table,
-pre {
+table {
   margin-top: 0;
+  margin-bottom: 16px;
+}
+
+pre {
+  margin-top: 15px;
   margin-bottom: 16px;
 }
 
@@ -71,7 +75,7 @@ hr {
 }
 
 .markdown-body {
-  width: 650px;
+  max-width: 650px;
   margin: auto;
 }
 
@@ -143,4 +147,8 @@ th{
       color: rgb(106, 153, 85);
     }
   }
+}
+
+img{
+  padding: 20px;
 }
