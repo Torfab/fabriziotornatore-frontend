@@ -496,9 +496,13 @@ export default defineComponent({
       return `<h${heading}>${lineSplitted.join(" ")}</h${heading}>`;
     },
     updateMD(){
-      this.display=markRaw(defineComponent({
-        template: `<div>${this.renderRawMD(this.raw)}</div>`
-      }))
+      try{
+        this.display=markRaw(defineComponent({
+          template: `<div>${this.renderRawMD(this.raw)}</div>`
+        }))
+      } catch {
+        this.$emit("errorBuildingMD")
+      }
     }
   },
   mounted(){

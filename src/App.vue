@@ -25,7 +25,7 @@ import HeaderNavigation from './components/HeaderNavigation.vue'
   max-width: 1280px;
   padding: 0 2rem;
   padding-top: 60px;
-  max-height: 100vh;
+  height: 100vh;
 }
 
 </style>

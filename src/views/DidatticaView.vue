@@ -1,11 +1,13 @@
 <template>
-  <div class="grid">
-    <CardItem
-      title="Programmazione"
-      image="pi-book"
-      class="col-12 md:col-6"
-      @click="goTo('variabili')"
-    ></CardItem>
+  <div>
+    <div class="grid">
+      <CardItem
+        title="Programmazione"
+        image="pi-book"
+        class="col-12 md:col-6"
+        @click="goTo('variabili')"
+      ></CardItem>
+    </div>
   </div>
 </template>
 
