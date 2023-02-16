@@ -25,11 +25,10 @@
           {{errorMessage}}
           <div>
             <span v-if="historyPage">
-              Clicca
-              <router-link :to="historyPage">qui</router-link>
+              <router-link :to="historyPage">Clicca qui</router-link>
               per andare alla pagina precedente o
             </span>
-            Clicca <router-link :to="{ name: 'home' }">qui</router-link> per
+            <router-link :to="{ name: 'home' }">Clicca qui</router-link> per
             andare alla home
           </div>
         </div>

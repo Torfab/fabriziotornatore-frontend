@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="cardTF">
+    <div :class="['cardTF', disabled?'disabled':'active']">
       <div class="cardTFTitle">{{ title }}</div>
       <i :class="['p-5 pi icon-size cardTFIcon', image]"></i>
     </div>
@@ -20,6 +20,10 @@ export default defineComponent({
       required: true,
       type: String,
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {};
@@ -34,7 +38,8 @@ export default defineComponent({
   border-radius: 10px;
   text-align: center;
   font-size: 40px;
-
+}
+.active{
   &:hover{
     border: 1px solid var(--link-color);
     cursor: pointer;
@@ -48,5 +53,12 @@ export default defineComponent({
 }
 .icon-size {
   font-size: 5rem; 
+}
+
+.disabled {
+  cursor: default;
+  opacity: 0.5;
+  filter: blur(1px);
+
 }
 </style>

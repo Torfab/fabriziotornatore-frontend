@@ -25,7 +25,7 @@ export default defineComponent({
       isParagraph: false,
       blockQuoteDeep: -1,
       continue: false,
-      kindOfOrderList: "",
+      kindOfOrderList: new Map() as Map<Number, String>,
       totalRender: "",
       language: "python",
       isTable: false,
@@ -70,7 +70,7 @@ export default defineComponent({
       this.isParagraph=false;
       this.blockQuoteDeep=0;
       this.continue=false;
-      this.kindOfOrderList="";
+      this.kindOfOrderList=new Map() as Map<Number, String>,
       this.totalRender="";
       this.isTotalCode=false;
       this.language="python";
@@ -154,19 +154,20 @@ export default defineComponent({
       let unorderedList =firstElement.length==1 && firstElement.match(/\*|\-|\+/g)
       let orderedList = firstElement.match(/[0-9]+\./g)
       let currentKindOfOrderList= undefined
+      let currentDeep = Math.floor(row.indexOf(firstElement) / 2)+1;
       if(unorderedList){
-        this.kindOfOrderList="ul"
+        this.kindOfOrderList.set(currentDeep, "ul");
         currentKindOfOrderList=true
       }
       if(orderedList){
-        this.kindOfOrderList="ol"
+        this.kindOfOrderList.set(currentDeep, "ol");
         currentKindOfOrderList=true
       }
 
       if (currentKindOfOrderList) {
-        let currentDeep = Math.floor(row.indexOf(firstElement) / 2)+1;
+        
         while (currentDeep < this.listDeep) {
-          tempResult += `</${this.kindOfOrderList}>`;
+          tempResult += `</${this.kindOfOrderList.get(this.listDeep)}>`;
           this.listDeep = this.listDeep - 1;
         }
         if (currentDeep == this.listDeep) {
@@ -175,13 +176,13 @@ export default defineComponent({
         }
         if (currentDeep == this.listDeep + 1) {
           this.listDeep = this.listDeep + 1;
-          tempResult += `<${this.kindOfOrderList}><li>${this.renderWithoutFirstSpecialCharacters(firstElement, row)}`;
+          tempResult += `<${this.kindOfOrderList.get(currentDeep)}><li>${this.renderWithoutFirstSpecialCharacters(firstElement, row)}</li>`;
           return tempResult;
         }
       }
       if(firstElement=="" && this.listDeep>0 ){
         while (this.listDeep > 0) {
-          tempResult=tempResult.concat(`</${this.kindOfOrderList}>`)
+          tempResult=tempResult.concat(`</${this.kindOfOrderList.get(this.listDeep)}>`)
           this.listDeep = this.listDeep - 1;
         } 
         return tempResult
@@ -324,7 +325,10 @@ export default defineComponent({
 
 
 
-      line=this.buildLineLink(line)
+      code=this.buildLineLink(line)
+      if(code!=line){
+        return code
+      }
       
 
       let tempResult=""
@@ -440,8 +444,7 @@ export default defineComponent({
             internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
             tooltip=`v-tooltip.top="'${internalSplit.slice(1).join(" ")}'"`
           }
-          
-          line=`${this.spanFormat(line.slice(0, start-1))}<a href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+          line=`${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
         }
       }
       return line;
@@ -493,13 +496,15 @@ export default defineComponent({
       let lineSplitted = line.split(" ");
       let heading = lineSplitted[0].length;
       lineSplitted.shift();
-      return `<h${heading}>${lineSplitted.join(" ")}</h${heading}>`;
+      return `<h${heading} id="${lineSplitted.join("-").trim().toLowerCase()}">${lineSplitted.join(" ")}</h${heading}>`;
     },
     updateMD(){
       try{
+        
         this.display=markRaw(defineComponent({
           template: `<div>${this.renderRawMD(this.raw)}</div>`
         }))
+        console.log(`<div>${this.renderRawMD(this.raw)}</div>`)
       } catch {
         this.$emit("errorBuildingMD")
       }
