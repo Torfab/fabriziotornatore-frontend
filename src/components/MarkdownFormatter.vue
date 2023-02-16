@@ -504,7 +504,6 @@ export default defineComponent({
         this.display=markRaw(defineComponent({
           template: `<div>${this.renderRawMD(this.raw)}</div>`
         }))
-        console.log(`<div>${this.renderRawMD(this.raw)}</div>`)
       } catch {
         this.$emit("errorBuildingMD")
       }

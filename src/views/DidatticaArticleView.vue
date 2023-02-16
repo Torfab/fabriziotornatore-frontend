@@ -122,10 +122,10 @@ export default defineComponent({
     },
     errorImagePath(): string {
       if(this.notFound){
-        return "/src/assets/svg/error404.svg"
+        return "/svg/error404.svg"
       } 
       if(this.broke ){
-        return "/src/assets/svg/error.svg"
+        return "/svg/error.svg"
       }
       return "#"
       

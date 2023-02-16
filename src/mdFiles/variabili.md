@@ -29,7 +29,7 @@ Quando servirà tale valore si utilizzerà tramite il nome della variabile che l
 
 Un'analogia pratica per capire questo concetto è uno scatolone.
 
-![un valore inserito dentro uno scatolone](/src/assets/svg/variabili-box.svg)
+![un valore inserito dentro uno scatolone](/svg/variabili-box.svg)
 
 Possiamo immaginare uno scatolone con un nome, ad esempio `a` e dentro inseriamo un valore, ad esempio `5`
 
@@ -45,7 +45,7 @@ Il codice qui sopra si traduce in: "è stato assegnato il valore 5 alla variabil
 
 Dato che una variabile può contenere un valore, possiamo assegnare il valore di una variabile ad un'altra variabile, sostanzialmente copiandolo.
 
-![un valore di uno scatolone inserito dentro un altro scatolone](/src/assets/svg/variabili-box2.svg)
+![un valore di uno scatolone inserito dentro un altro scatolone](/svg/variabili-box2.svg)
 
 ```cpp
 a=5;
@@ -113,7 +113,7 @@ c=a+b;
 
 Puoi sovrascrivere il valore di una variabile utilizzando se stessa nell'operazione, ricordiamo che l'operazione viene prima completamente risolta e solo il risultato andrà ad inserirsi nella variabile.
 
-![un valore di uno scatolone usato in una operazione il cui risultato va nello stesso scatolone](/src/assets/svg/variabili-box3.svg)
+![un valore di uno scatolone usato in una operazione il cui risultato va nello stesso scatolone](/svg/variabili-box3.svg)
 
 ```cpp
 a=5;
@@ -135,7 +135,7 @@ In realtà le variabili possono contenere valori di diversi tipi. Tra i più com
 
 Possiamo immaginarli come scatoloni con una forma specifica, solo i valori che hanno la stessa forma possono essere inseriti in queste variabili
 
-![Scatoloni Specifici divisi per tipi](/src/assets/svg/variabili-box4.svg)
+![Scatoloni Specifici divisi per tipi](/svg/variabili-box4.svg)
 
 
 Diversi linguaggi di programmazione hanno diversi approcci sull'utilizzo dei tipi, nello specifico:
