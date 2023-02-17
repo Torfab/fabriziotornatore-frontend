@@ -443,8 +443,10 @@ export default defineComponent({
             internalSplit[1]=internalSplit[1].substring(1)
             internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
             tooltip=`v-tooltip.top="'${internalSplit.slice(1).join(" ")}'"`
+            line=`${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${internalSplit[0][0]=='#'?'':'target="_blank"'}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
+          }else{
+            line=`${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
           }
-          line=`${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
         }
       }
       return line;

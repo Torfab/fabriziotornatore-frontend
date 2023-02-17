@@ -235,7 +235,7 @@ Adesso le convenzioni non strintengi riguardanti il nome di una variabile:
 - Le costanti sono scritte completamente in maiuscolo
 - Nel caso il nome è la crasi di più parole ci sono alcuni formati preferiti, tra i più comuni cito:
   - Il [camel case](https://it.wikipedia.org/wiki/Notazione_a_cammello) `scontoDaApplicare`[^](#noGo "Notare che la prima lettera è comunque minuscola") 
-  - Lo [snake case](https://it.wikipedia.org/wiki/Snake_case) `sconto_da_applicare`
+  - Lo [snake case](https://it.wikipedia.org/wiki/Snake_case) sconto_da_applicare
 
 ## Comprensione Pratica
 

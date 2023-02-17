@@ -3,7 +3,7 @@
     <div class="grid">
       <CardItem
         title="Programmazione"
-        image="pi-book"
+        image="pi-server"
         class="col-12 md:col-6"
         @click="goTo('variabili')"
       ></CardItem>

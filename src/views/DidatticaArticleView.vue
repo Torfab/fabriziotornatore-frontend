@@ -7,22 +7,19 @@
           @metadati="metadatiUpdated"
           @errorBuildingMD="errorBuildingMDHandler"
         ></MarkdownFormatter>
-        <div class="d-flex">
-          <router-link v-if="previousPage" @click="updateHistoryPage()" :to="previousPage.name">{{
-            previousPage.title
-          }}</router-link>
-          <router-link class="ml-auto" v-if="nextPage" @click="updateHistoryPage()" :to="nextPage.name">{{
-            nextPage.title
-          }}</router-link>
+        <hr>
+        <div class="d-flex mb-5">
+          <ButtonNavigationItem v-if="previousPage" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem v-if="nextPage" class="ml-auto" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
         </div>
       </div>
       <div class="d-flex" style="height: 100%">
         <div v-if="error || notFound" class="article-error">
-          <h1>{{errorTitle}}</h1>
+          <h1>{{ errorTitle }}</h1>
           <div class="d-flex">
-            <img class="m-auto" :src="errorImagePath"/>
+            <img class="m-auto" :src="errorImagePath" />
           </div>
-          {{errorMessage}}
+          {{ errorMessage }}
           <div>
             <span v-if="historyPage">
               <router-link :to="historyPage">Clicca qui</router-link>
@@ -41,6 +38,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MarkdownFormatter from "@/components/MarkdownFormatter.vue";
+import ButtonNavigationItem from "@/components/ButtonNavigationItem.vue"
 import type { ArticleRoute, MetadatiDidattica } from "@/Utility/typings";
 import Clock from "@/components/Clock.vue";
 
@@ -57,29 +55,29 @@ export default defineComponent({
   components: {
     MarkdownFormatter,
     Clock,
+    ButtonNavigationItem
   },
   methods: {
     updateHistoryPage(): void {
-      this.historyPage=(this.$route.params.article as string)
+      this.historyPage = this.$route.params.article as string;
     },
     updateComponent(param: string) {
       // The dynamic import
       import(`@/mdFiles/${param}.md?raw`)
         .then((module: any) => {
-          this.broke=false;
-          this.notFound=false,
-          this.raw = module.default;
+          this.broke = false;
+          (this.notFound = false), (this.raw = module.default);
         })
         .catch(() => {
-          window.document.title = "Error"
+          window.document.title = "Error";
           this.notFound = true;
           this.raw = undefined;
         });
     },
-    errorBuildingMDHandler(){
-      window.document.title = "Error"
-          this.broke = true;
-          this.raw = undefined;
+    errorBuildingMDHandler() {
+      window.document.title = "Error";
+      this.broke = true;
+      this.raw = undefined;
     },
     metadatiUpdated(metadati: Object) {
       this.metadati = metadati;
@@ -100,35 +98,34 @@ export default defineComponent({
   },
   computed: {
     error(): boolean {
-      return this.broke || this.notFound
+      return this.broke || this.notFound;
     },
     errorTitle(): string {
-      if(this.notFound){
-        return "Risorsa non trovata"
-      } 
-      if(this.broke ){
-        return "Oh No, Errore"
+      if (this.notFound) {
+        return "Risorsa non trovata";
       }
-      return "Absurd"
+      if (this.broke) {
+        return "Oh No, Errore";
+      }
+      return "Absurd";
     },
     errorMessage(): string {
-      if(this.notFound){
-        return "L'articolo che stai cercando d'aprire non è stato trovato"
-      } 
-      if(this.broke ){
-        return "Oops, a quanto pare hai incontrato un errore :C questo non doveva accadere"
+      if (this.notFound) {
+        return "L'articolo che stai cercando d'aprire non è stato trovato";
       }
-      return "non esiste alcun modo in cui tu sia riuscito a finire qui"
+      if (this.broke) {
+        return "Oops, a quanto pare hai incontrato un errore :C questo non doveva accadere";
+      }
+      return "non esiste alcun modo in cui tu sia riuscito a finire qui";
     },
     errorImagePath(): string {
-      if(this.notFound){
-        return "/svg/error404.svg"
-      } 
-      if(this.broke ){
-        return "/svg/error.svg"
+      if (this.notFound) {
+        return "/svg/error404.svg";
       }
-      return "#"
-      
+      if (this.broke) {
+        return "/svg/error.svg";
+      }
+      return "#";
     },
     loading(): boolean {
       return !this.raw && !this.error;
@@ -179,6 +176,17 @@ export default defineComponent({
 }
 .article-error {
   margin: auto;
+}
+
+.lastbutton {
+  border: 1px solid var(--border-color);
+  transition: background-color 0.25s, color 0.25s;
+  color: var(--main-link-color);
+  cursor: pointer;
+  &:hover {
+    color: white !important;
+    background-color: var(--main-link-color);
+  }
 }
 </style>
 
