@@ -1,6 +1,23 @@
 @import './init.css';
 @import './themeHandler.css';
 
+.p-sidebar {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover{
+  background-color: transparent;
+  color: var(--main-text-color)
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-icon{
+  color: var(--main-text-color)
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-close:focus, .p-sidebar .p-sidebar-header .p-sidebar-icon:focus{
+  box-shadow: 0 0 0 0.2rem var(--main-border-color);
+}
 strong{
   font-weight: 700;
 }
@@ -19,12 +36,6 @@ a,
   text-decoration: none;
   color: var(--main-link-color);
   transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
 }
 
 @media (min-width: 1024px) {

@@ -11,6 +11,13 @@
   --main-codeblock-bg: rgba(170, 170, 170, 0.4);
   --main-special-word: #800684;
   --secondary-bg-color: #e0e8f0;
+  --height-header: 48px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --height-header: 60px;
+  }
 }
 
 html[data-theme='light'] {

@@ -435,14 +435,14 @@ export default defineComponent({
         let realEnd= line.indexOf(")")
         let slice=line.slice(start, end)
         if(isImage){
-          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
+          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto article-image" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
         } else {
           let internalSplit=line.slice(end+2,realEnd).split(" ");
           let tooltip=""
           if(internalSplit.length>1){
             internalSplit[1]=internalSplit[1].substring(1)
             internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
-            tooltip=`v-tooltip.top="'${internalSplit.slice(1).join(" ")}'"`
+            tooltip=`v-tippy="'${internalSplit.slice(1).join(" ")}'"`
             line=`${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${internalSplit[0][0]=='#'?'':'target="_blank"'}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
           }else{
             line=`${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`

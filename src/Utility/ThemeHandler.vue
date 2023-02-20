@@ -5,12 +5,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      theme: localStorage.getItem('theme') || 'light',
+      theme: localStorage.getItem('theme') || 'dark',
       darkCheckBox: false,
     };
   },
@@ -27,7 +27,7 @@ export default defineComponent({
         this.setTheme('dark');
       }
     },
-    setTheme(theme) {
+    setTheme(theme: string) {
       localStorage.setItem('theme', theme);
       document.documentElement.setAttribute('data-theme', theme);
     },

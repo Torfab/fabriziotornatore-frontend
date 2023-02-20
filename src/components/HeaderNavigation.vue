@@ -1,13 +1,25 @@
 <template>
   <header class="w-100 p-fluid">
-    <div :class="['outer-header',{ shadow: scrollValue > 0 }]">
+    <Sidebar v-model:visible="visibleLeft" class="p-sidebar-sm">
+      <div class="sidebar-link">
+        <RouterLink to="/" @click="visibleLeft = false">Home</RouterLink>
+      </div>
+      <!-- <div class="sidebar-link">
+            <RouterLink to="/cards" @click="visibleLeft=false">Cards</RouterLink>
+          </div> -->
+    </Sidebar>
+    <div :class="['outer-header', { shadow: scrollValue > 0 }]">
       <div class="w-100 m-auto inner-header">
-        <nav>
+        <nav class="nav-bar">
           <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/cards">Cards</RouterLink>
+          <!-- <RouterLink to="/cards">Cards</RouterLink> -->
         </nav>
-        
-        <ThemeHandler class="mr-3"></ThemeHandler>
+        <SimpleButton
+          @click="visibleLeft = true"
+          class="ml-2 nav-button"
+          icon="bars"
+        ></SimpleButton>
+        <ThemeHandler class="ml-auto theme-handler-button"></ThemeHandler>
       </div>
     </div>
   </header>
@@ -15,20 +27,29 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ThemeHandler from "@/Utility/ThemeHandler.vue"
+import ThemeHandler from "@/Utility/ThemeHandler.vue";
+import Sidebar from "primevue/sidebar";
+import SimpleButton from "@/components/SimpleButton.vue";
+
 export default defineComponent({
   components: {
-    ThemeHandler
+    ThemeHandler,
+    Sidebar,
+    SimpleButton,
   },
   data() {
     return {
       scrollValue: 0,
+      visibleLeft: false,
     };
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
+    test() {
+      console.log("lol");
+    },
     handleScroll() {
       this.scrollValue = window.scrollY;
     },
@@ -41,9 +62,9 @@ export default defineComponent({
   margin: auto;
 }
 .outer-header {
-
   padding-left: calc(100vw - 100%);
   border-bottom: 1px solid var(--border-color);
+  height: 100%;
 }
 
 .outer-header.shadow {
@@ -51,15 +72,16 @@ export default defineComponent({
 }
 
 .inner-header {
+  display: flex;
   max-width: 1280px;
-  padding: 0 2rem;
+  height: 100%;
 }
 
 header {
   position: fixed;
   background-color: var(--color-background);
   line-height: 1.5;
-  height: 60px;
+  height: var(--height-header);
   width: 100%;
   z-index: 1;
 }
@@ -88,11 +110,31 @@ nav a:first-of-type {
   border: 0;
 }
 
+.nav-bar {
+  visibility: collapse;
+}
+.nav-button {
+  visibility: visible;
+  margin-right: auto;
+}
+.theme-handler-button {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 @media (min-width: 1024px) {
+  .nav-button {
+    visibility: collapse;
+  }
+  .nav-bar {
+    visibility: visible;
+  }
+  .theme-handler-button {
+    margin-right: 1rem;
+  }
   .inner-header {
-    display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    padding: 0 2rem;
   }
 
   .logo {
@@ -111,5 +153,9 @@ nav a:first-of-type {
     font-size: 1rem;
     padding: 1rem 0;
   }
+}
+
+.sidebar-link {
+  text-align: center;
 }
 </style>

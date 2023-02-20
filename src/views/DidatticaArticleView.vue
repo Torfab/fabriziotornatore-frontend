@@ -69,7 +69,7 @@ export default defineComponent({
           (this.notFound = false), (this.raw = module.default);
         })
         .catch(() => {
-          window.document.title = "Error";
+          window.document.title = "404 Not Found";
           this.notFound = true;
           this.raw = undefined;
         });
@@ -172,7 +172,13 @@ export default defineComponent({
 .blog-article {
   max-width: 650px;
   margin: auto;
-  padding: 0 2rem;
+
+}
+
+@media (min-width: 1024px){
+  .blog-article {
+    padding: 0 2rem;
+  }
 }
 .article-error {
   margin: auto;
