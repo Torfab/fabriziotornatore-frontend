@@ -14,8 +14,6 @@
         </div>
       </div>
       <div class="d-flex" style="height: 100%">
-        {{ raw }}
-        test
         <div v-if="error || notFound" class="article-error">
           <h1>{{ errorTitle }}</h1>
           <div class="d-flex">

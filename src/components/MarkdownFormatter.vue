@@ -253,7 +253,7 @@ export default defineComponent({
       if(this.isParagraph){
         this.totalRender=this.totalRender.concat('</p>')
       }
-      return this.totalRender+ "mbare";
+      return this.totalRender;
     },
     buildLineCode(line: string){
       if(this.isTotalCode){
