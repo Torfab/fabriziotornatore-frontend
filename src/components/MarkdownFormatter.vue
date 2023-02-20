@@ -236,8 +236,7 @@ export default defineComponent({
     },
     renderRawMD(raw: string) {
       this.resetGlobals();
-      raw.split("\r\n").forEach((row: string) => {
-
+      raw.split("\n").forEach((row: string) => {
         let checkBlockQuote=this.checkBlockQuote(row)
         if(checkBlockQuote!=undefined){
           this.totalRender = this.totalRender.concat(checkBlockQuote)
@@ -249,13 +248,12 @@ export default defineComponent({
         }
         let renderRow=this.renderRow(row)
         this.totalRender=this.totalRender.concat(renderRow)
-
       });
       this.$emit("metadati", this.metadati)
       if(this.isParagraph){
         this.totalRender=this.totalRender.concat('</p>')
       }
-      return this.totalRender;
+      return this.totalRender+ "mbare";
     },
     buildLineCode(line: string){
       if(this.isTotalCode){
