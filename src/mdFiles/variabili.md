@@ -19,7 +19,7 @@ nextPage: controlloDiFlusso - Condizioni e Cicli
 
 ## Introduzione 
 
-Il v2 primo concetto fondamentale nel mondo informatico è il concetto di "**Variabile**".
+Il primo concetto fondamentale nel mondo informatico è il concetto di "**Variabile**".
 
 Una variabile è una entità informatica che può contenere un valore.
 
