@@ -1,8 +1,7 @@
 ---
-
 title: Variabili
+previousPage: introduzione - Introduzione alla Programmazione
 nextPage: controlloDiFlusso - Condizioni e Cicli
-
 ---
 # Variabili
 

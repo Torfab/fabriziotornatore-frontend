@@ -14,15 +14,15 @@ interface LanguageList {
 
 const languages = {
   "python": {
-    keyword:["import", "from", "def", "for", "in", "if", "print", "continue", "elif", "else", "not", "and","or", "return", "break"], 
+    keyword:["import", "from", "def", "for", "in", "if", "continue", "elif", "else", "not", "and","or", "return", "break"], 
     punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);"], 
-    builtin:["len", "max", "set", "dict", "enumerate","range"], 
+    builtin:["set", "dict", "enumerate","range"], 
     operator: ["=", "/", "%", "+", "-", "*", ">", "&lt;"],
     comment: "#",
     directive: "directive"
   } as Language,
   "cpp": {
-    keyword:["const", "import", "from", "def", "for", "in", "if", "print", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float", "printf", "scanf"], 
+    keyword:["const", "import", "from", "def", "for", "in", "if", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float"], 
     punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);", "'"], 
     builtin:["cin", "cout"], 
     operator: ["=", "/", "%", "+", "-", "*", "&lt;", ">", "!", "|"],
