@@ -246,7 +246,7 @@ export default defineComponent({
     },
     renderRawMD(raw: string) {
       this.resetGlobals();
-      raw.split("\r\n").forEach((row: string) => {
+      raw.split("\n").forEach((row: string) => {
         let checkBlockQuote=this.checkBlockQuote(row)
         if(checkBlockQuote!=undefined){
           this.totalRender = this.totalRender.concat(checkBlockQuote)
