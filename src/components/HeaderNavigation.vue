@@ -9,7 +9,7 @@
       <div class="w-100 m-auto inner-header">
         <SimpleButton
           @click="visibleLeft = true"
-          class="ml-2 nav-button"
+          class="ml-2 nav-button mr-auto"
           icon="bars"
         ></SimpleButton>
         <a href="/" class="favicon-header">
@@ -57,12 +57,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 .favicon-header{
-  height: var(--height-header)
+  height: calc(var(--height-header) - 10px);
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .favicon-header-img{
   height: 100%;
-  margin-right: 2rem;
 }
 .m-auto {
   margin: auto;
@@ -117,10 +118,10 @@ nav a:first-of-type {
 }
 
 .nav-bar {
-  visibility: collapse;
+  display: none;
 }
 .nav-button {
-  visibility: visible;
+  display: block;
   margin-right: auto;
 }
 .theme-handler-button {
@@ -129,11 +130,17 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-  .nav-button {
-    visibility: collapse;
+
+  .favicon-header {
+    margin-right: 2rem;
   }
+
+  .nav-button {
+    display: none
+  }
+
   .nav-bar {
-    visibility: visible;
+    display: block
   }
   .theme-handler-button {
     margin-right: 1rem;
