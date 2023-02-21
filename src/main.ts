@@ -16,7 +16,7 @@ import 'tippy.js/dist/tippy.css' // optional for styling
 
 
 import './assets/main.css'
-import './assets/markdown2.scss'
+import './assets/markdown.scss'
 
 import VueTippy from 'vue-tippy'
 
