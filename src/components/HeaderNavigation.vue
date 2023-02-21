@@ -4,21 +4,21 @@
       <div class="sidebar-link">
         <RouterLink to="/" @click="visibleLeft = false">Home</RouterLink>
       </div>
-      <!-- <div class="sidebar-link">
-            <RouterLink to="/cards" @click="visibleLeft=false">Cards</RouterLink>
-          </div> -->
     </Sidebar>
     <div :class="['outer-header', { shadow: scrollValue > 0 }]">
       <div class="w-100 m-auto inner-header">
-        <nav class="nav-bar">
-          <RouterLink to="/">Home</RouterLink>
-          <!-- <RouterLink to="/cards">Cards</RouterLink> -->
-        </nav>
         <SimpleButton
           @click="visibleLeft = true"
           class="ml-2 nav-button"
           icon="bars"
         ></SimpleButton>
+        <a href="/" class="favicon-header">
+          <img class="favicon-header-img" src="/favicon.svg"/>
+        </a>
+        <nav class="nav-bar">
+          <RouterLink to="/">Home</RouterLink>
+        </nav>
+
         <ThemeHandler class="ml-auto theme-handler-button"></ThemeHandler>
       </div>
     </div>
@@ -55,6 +55,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
+.favicon-header{
+  height: var(--height-header)
+}
+
+.favicon-header-img{
+  height: 100%;
+  margin-right: 2rem;
+}
 .m-auto {
   margin: auto;
 }

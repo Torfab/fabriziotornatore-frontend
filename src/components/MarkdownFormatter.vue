@@ -310,7 +310,7 @@ export default defineComponent({
       }
       return line
     },
-    renderLine(firstElement: string, line: string, skipParagraph=true) {
+    renderLine(firstElement: string, line: string) {
       if(this.isParagraph) {
         this.totalRender=this.totalRender.concat(" ")
       }
@@ -438,14 +438,26 @@ export default defineComponent({
         lineSplitted.shift();
         line = lineSplitted.join(" ")
       }
-      return this.renderLine(firstElement, line, false)
+      return this.renderLine(firstElement, line)
     },
-    buildLineLink(line: string){
+    buildLineLink(line: string): string{
       if(line.includes("](")){
         let isImage=line[line.indexOf("[")-1]=="!"
         let start=line.indexOf("[")+1
         let end= line.indexOf("]")
-        let realEnd= line.indexOf(")")
+        let realEnd=line.indexOf(")")
+        let ignore=false
+        let subline=line.substring(end)
+        for (var i = 0; i < subline.length; i++) {
+          if(subline[i]=="\""){
+            ignore= !ignore
+          }
+          if(subline[i]===')' && !ignore){
+            realEnd=i+end
+            break;
+          }
+        }
+
         let slice=line.slice(start, end)
         if(isImage){
           line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto article-image" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
@@ -456,13 +468,13 @@ export default defineComponent({
             internalSplit[1]=internalSplit[1].substring(1)
             internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
             tooltip=`v-tippy="'${internalSplit.slice(1).join(" ")}'"`
-            line=`${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${internalSplit[0][0]=='#'?'':'target="_blank"'}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
+            return `${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${internalSplit[0][0]=='#'?'':'target="_blank"'}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
           }else{
-            line=`${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+            return `${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
           }
         }
       }
-      return line;
+      return this.spanFormat(line);
     },
     cleanLine(line:string): string{
       return line.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
