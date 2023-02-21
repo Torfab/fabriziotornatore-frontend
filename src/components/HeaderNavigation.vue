@@ -47,9 +47,6 @@ export default defineComponent({
     window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
-    test() {
-      console.log("lol");
-    },
     handleScroll() {
       this.scrollValue = window.scrollY;
     },

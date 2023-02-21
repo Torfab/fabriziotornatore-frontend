@@ -15,23 +15,23 @@ interface LanguageList {
 const languages = {
   "python": {
     keyword:["import", "from", "def", "for", "in", "if", "print", "continue", "elif", "else", "not", "and","or", "return", "break"], 
-    punctuation:["(", ")", "[", "]", "{","}", ":", ",", ";"], 
+    punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);"], 
     builtin:["len", "max", "set", "dict", "enumerate","range"], 
-    operator: ["=", "/", "%", "+", "-", "*", ">", "<"],
+    operator: ["=", "/", "%", "+", "-", "*", ">", "&lt;"],
     comment: "#",
     directive: "directive"
   } as Language,
   "cpp": {
     keyword:["const", "import", "from", "def", "for", "in", "if", "print", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float", "printf", "scanf"], 
-    punctuation:["(", ")", "[", "]", "{","}", ":", ",", ";", "'"], 
+    punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);", "'"], 
     builtin:["cin", "cout"], 
-    operator: ["=", "/", "%", "+", "-", "*", "<", ">", "!", "|"],
+    operator: ["=", "/", "%", "+", "-", "*", "&lt;", ">", "!", "|"],
     comment: "//",
     directive: "#"
   } as Language,
   "json": {
     keyword: [],
-    punctuation:["(", ")", "[", "]", "{","}", ":", ",", ";"], 
+    punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);"], 
     builtin:[], 
     operator: ["=", "/", "%", "+", "-", "*", "<", ">", "!", "|"],
     comment: "noComment",

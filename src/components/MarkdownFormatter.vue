@@ -165,7 +165,7 @@ export default defineComponent({
       }
 
       if (currentKindOfOrderList) {
-        
+        tempResult=tempResult.concat(this.checkAndCloseParagraph())
         while (currentDeep < this.listDeep) {
           tempResult += `</${this.kindOfOrderList.get(this.listDeep)}>`;
           this.listDeep = this.listDeep - 1;
@@ -181,13 +181,26 @@ export default defineComponent({
         }
       }
       if(firstElement=="" && this.listDeep>0 ){
-        while (this.listDeep > 0) {
-          tempResult=tempResult.concat(`</${this.kindOfOrderList.get(this.listDeep)}>`)
-          this.listDeep = this.listDeep - 1;
-        } 
+        tempResult=tempResult.concat(this.checkAndCloseList())
+
         return tempResult
       }
       return
+    },
+    checkAndCloseList() {
+      let tempResult=""
+      while (this.listDeep > 0) {
+          tempResult=tempResult.concat(`</${this.kindOfOrderList.get(this.listDeep)}>`)
+          this.listDeep = this.listDeep - 1;
+        } 
+      return tempResult
+    },
+    checkAndCloseParagraph(){
+      if(this.isParagraph){
+        this.isParagraph=false
+        return"</p>"
+      }
+      return ""
     },
     renderRow(row:string){
       let totalRender=""
@@ -195,10 +208,7 @@ export default defineComponent({
       let firstElement = splitted[0];
         let skip = this.toggleMeta(firstElement);
         if(firstElement===""){
-          if(this.isParagraph){
-            this.isParagraph=false
-            totalRender=totalRender.concat("</p>")
-          }
+          totalRender=totalRender.concat(this.checkAndCloseParagraph())
         }
         if (this.isMeta || skip) {
           if(firstElement[firstElement.length-1]==":"){
@@ -236,7 +246,7 @@ export default defineComponent({
     },
     renderRawMD(raw: string) {
       this.resetGlobals();
-      raw.split("\n").forEach((row: string) => {
+      raw.split("\r\n").forEach((row: string) => {
         let checkBlockQuote=this.checkBlockQuote(row)
         if(checkBlockQuote!=undefined){
           this.totalRender = this.totalRender.concat(checkBlockQuote)
@@ -250,9 +260,8 @@ export default defineComponent({
         this.totalRender=this.totalRender.concat(renderRow)
       });
       this.$emit("metadati", this.metadati)
-      if(this.isParagraph){
-        this.totalRender=this.totalRender.concat('</p>')
-      }
+      this.totalRender=this.totalRender.concat(this.checkAndCloseList())
+      this.totalRender=this.totalRender.concat(this.checkAndCloseParagraph())
       return this.totalRender;
     },
     buildLineCode(line: string){
@@ -321,7 +330,7 @@ export default defineComponent({
         return code
       }
 
-
+      this.totalRender=this.totalRender.concat(this.checkAndOpenParagraph(line[0]))
 
       code=this.buildLineLink(line)
       if(code!=line){
@@ -331,16 +340,19 @@ export default defineComponent({
 
       let tempResult=""
       
-      if(!this.isParagraph && line[0]!="<" && line[0]!=undefined && skipParagraph && this.listDeep==0 && !this.isTotalCode){
-        this.isParagraph=true
-        tempResult=tempResult.concat("<p>")
-      }
       tempResult=tempResult.concat(line)
 
       tempResult=this.spanFormat(tempResult)
 
 
       return tempResult
+    },
+    checkAndOpenParagraph(firstCharacter: string){
+      if(!this.isParagraph && firstCharacter!="<" && firstCharacter!=undefined && this.listDeep==0 && !this.isTotalCode){
+        this.isParagraph=true
+        return "<p>"
+      }
+      return ""
     },
     evaluateString(line: string): string {
       let splitted=line.split("\"")
@@ -356,9 +368,10 @@ export default defineComponent({
     },
     evaluateKeywords(line: string, keyword: string, language: string, punctuation=false): string{
       let keywords=getKeywords(language, keyword)
+      keywords= keywords.map((element: string)=>element.length==1?`\\${element}`:element)
       let splitRegex: RegExp;
       if(punctuation){
-        splitRegex = new RegExp(`(\\${keywords.join('|\\')})`, 'g');
+        splitRegex = new RegExp(`(${keywords.join('|')})`, 'g');
       } else {
         splitRegex = new RegExp(`\\b(${keywords.join('|')})\\b`, 'g');
       }
@@ -387,9 +400,9 @@ export default defineComponent({
         }else {
           if(!foundComment&&element.includes(symbol)){
             foundComment=true
-            tempResult=tempResult+this.cleanLine(element).replace(symbol, `<span class="${keyword}">${symbol}`)
+            tempResult=tempResult.concat(element.replace(symbol, `<span class="${keyword}">${symbol}`))
           }else {
-            tempResult=tempResult+element
+            tempResult=tempResult.concat(element)
           }
         }
       })
@@ -399,7 +412,9 @@ export default defineComponent({
       return tempResult
     },
     codify(line: string, language: string){
-      let tempResult=this.evaluateString(line)
+      
+      let tempResult=this.cleanLine(line)
+      tempResult=this.evaluateString(tempResult)
       let tempResultWithComment=this.evaluateWholeLine(tempResult, getWholeLineSymbol(language, "comment"), "comment")
       if(tempResult!=tempResultWithComment){
         return tempResultWithComment+"\r\n"
@@ -410,7 +425,7 @@ export default defineComponent({
       }
       tempResult=this.evaluateKeywords(tempResult, "keyword", language)
       tempResult=this.evaluateKeywords(tempResult, "builtin", language)
-      tempResult=this.evaluateRegExp(tempResult, /\b(\w+\()/g, "function")
+      tempResult=this.evaluateRegExp(tempResult, /\b(\w+)(?=\()/g, "function")
       tempResult=this.evaluateKeywords(tempResult, "punctuation", language, true)
       tempResult=this.evaluateKeywords(tempResult, "operator", language, true)
       tempResult=this.evaluateRegExp(tempResult, /\b(-?\d+(\.\d+)?)\b/g, "number")
