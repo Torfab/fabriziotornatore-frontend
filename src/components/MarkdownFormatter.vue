@@ -123,6 +123,9 @@ export default defineComponent({
       return
     },  
     checkTable(row:string){
+      if(row[0]!="|"){
+        return
+      }
       let splitted=row.split("|")
       if(splitted.length>2){
         if(!this.isTable){
@@ -240,7 +243,7 @@ export default defineComponent({
           this.isTable=false;
           this.tableLength=-1;
 
-          totalRender=totalRender.concat("</table>aaaaaaa")
+          totalRender=totalRender.concat("</table>")
         }
         return totalRender.concat(this.renderLine(firstElement, row))
     },

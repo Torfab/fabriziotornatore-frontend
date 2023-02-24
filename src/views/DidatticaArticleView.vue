@@ -30,7 +30,6 @@
           </div>
         </div>
       </div>
-      <!-- <div v-if="loading">Loading</div> -->
     </div>
   </div>
 </template>
