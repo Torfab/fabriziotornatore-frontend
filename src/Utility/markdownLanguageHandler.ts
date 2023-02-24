@@ -23,9 +23,9 @@ const languages = {
   } as Language,
   "cpp": {
     keyword:["const", "import", "from", "def", "for", "in", "if", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float"], 
-    punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);", "'"], 
+    punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt|&amp);", "'"], 
     builtin:["cin", "cout"], 
-    operator: ["=", "/", "%", "+", "-", "*", "&lt;", ">", "!", "|"],
+    operator: ["=", "/", "%", "+", "-", "&amp;", "&lt;", ">", "!", "|"],
     comment: "//",
     directive: "#"
   } as Language,
@@ -40,9 +40,9 @@ const languages = {
 } as LanguageList
 
 export function getKeywords(language: string, keyword: string): Array<string>{
-  return languages[language][keyword]
+  return languages[language][keyword as keyof Language] as Array<string>
 }
 
 export function getWholeLineSymbol(language: string, keyword:string): string {
-  return languages[language][keyword]
+  return languages[language][keyword as keyof Language] as string
 }

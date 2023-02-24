@@ -1,7 +1,7 @@
 ---
 title: Variabili
 previousPage: introduzione - Introduzione alla Programmazione
-nextPage: controlloDiFlusso - Condizioni e Cicli
+nextPage: condizioni - Condizioni "if"
 ---
 # Variabili
 
@@ -107,7 +107,7 @@ a=5;
 b=a+3;
 c=a+b;
 //in questo caso il valore di b sarà uguale a 8 e quello di a rimane 5.
-//Infine il valore di c sarà uguale ad 8+5 -> 13
+//Infine il valore di c sarà uguale ad 8+5 quindi a 13
 ```
 
 Puoi sovrascrivere il valore di una variabile utilizzando se stessa nell'operazione, ricordiamo che l'operazione viene prima completamente risolta e solo il risultato andrà ad inserirsi nella variabile.
@@ -117,7 +117,7 @@ Puoi sovrascrivere il valore di una variabile utilizzando se stessa nell'operazi
 ```cpp
 a=5;
 a=a+1;
-//Prima viene eseguita l'operazione quindi a+1 -> 5+1 -> 6
+//Prima viene eseguita l'operazione quindi facendo i passaggi a+1 -> 5+1 -> 6
 //Una volta trovato il risultato viene reinserita nella variabile a
 ```
 

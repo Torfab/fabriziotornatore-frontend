@@ -30,7 +30,6 @@
           </div>
         </div>
       </div>
-      <!-- <div v-if="loading">Loading</div> -->
     </div>
   </div>
 </template>
@@ -50,6 +49,7 @@ export default defineComponent({
       notFound: false,
       historyPage: undefined as string | undefined,
       metadati: {} as MetadatiDidattica,
+      oldParam: ""
     };
   },
   components: {
@@ -62,7 +62,10 @@ export default defineComponent({
       this.historyPage = this.$route.params.article as string;
     },
     updateComponent(param: string) {
-      // The dynamic import
+      if(this.oldParam!=param){
+        this.raw="Loading";
+      }
+      this.oldParam=param;
       import(`@/mdFiles/${param}.md?raw`)
         .then((module: any) => {
           this.broke = false;
