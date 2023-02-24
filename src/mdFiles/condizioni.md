@@ -53,7 +53,7 @@ if(5>2){
 ## Sintassi
 
 In C la sintassi per la condizione è 
-```
+```cpp
 if (condizione) {}
 ```
 
@@ -61,12 +61,12 @@ Al posto di `condizione` devo avere un booleano o un *qualcosa* che abbia come r
 
 Questo qualcosa è tipicamente una comparazione, nello specifico:
 
-  1. `<`   minore
-  2. `>`   maggiore
-  3. `<=`  minore o uguale
-  4. `>=`  maggiore o uguale
-  5. `==`  uguali [^](#noGo, "ricordiamo che un singolo uguale indica una ASSEGNAZIONE, si è quindi deciso di usarne due per indicare il significato matematico")
-  6. `!=`  diversi
+1. `<`   minore
+2. `>`   maggiore
+3. `<=`  minore o uguale
+4. `>=`  maggiore o uguale
+5. `==`  uguali [^](#noGo "ricordiamo che un singolo uguale indica una ASSEGNAZIONE, si è quindi deciso di usarne due per indicare il significato matematico")
+6. `!=`  diversi
 
 Le graffe rappresentano il blocco di codice che verrà eseguito solo a patto che la condizione sia vera, può protrarsi per molte righe.
 
@@ -95,7 +95,7 @@ if(eta<18){
 }
 ```
 
-Se immaginiamo di aver inserito la nostra età[^](il linguaggio C mal tollera le lettere accentate, quindi consiglio di evitarle quando possibile) all'interno della variabile `eta`, non possiamo sapere apriori quale delle due condizioni sarà vera o falsa, ma dipenderà dal valore che ho inserito dentro la variabile.
+Se immaginiamo di aver inserito la nostra età[^](#noGo "il linguaggio C mal tollera le lettere accentate, quindi consiglio di evitarle quando possibile") all'interno della variabile `eta`, non possiamo sapere apriori quale delle due condizioni sarà vera o falsa, ma dipenderà dal valore che ho inserito dentro la variabile.
 
 ## else
 
