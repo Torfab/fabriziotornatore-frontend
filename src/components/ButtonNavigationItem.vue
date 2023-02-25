@@ -1,8 +1,8 @@
 <template>
-  <a :href="page.name" class="p-2 lastbutton" @click.prevent="updateHistoryPage()">
-      <i v-if="direction=='left'" class="pi pi-caret-left"></i>
-      {{ page.title }}
-      <i v-if="direction=='right'" class="pi pi-caret-right"></i>
+  <a :href="page.name" class="p-2 lastbutton d-flex" @click.prevent="updateHistoryPage()">
+      <i v-if="direction=='left'" class="my-auto mr-3 pi pi-caret-left"></i>
+      <div class="my-auto">{{ page.title }}</div>
+      <i v-if="direction=='right'" class="my-auto ml-3 pi pi-caret-right"></i>
   </a>
 </template>
 

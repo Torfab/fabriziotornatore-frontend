@@ -8,8 +8,7 @@ nextPage: cicli - Cicli
 
 - [Condizioni](#condizioni)
   - [Flusso di esecuzione](#flusso-di-esecuzione)
-  - [Core](#core)
-  - [Sintassi](#sintassi)
+  - [Nucleo](#nucleo)
   - [Utilizzo variabili all'interno della condizione](#utilizzo-variabili-allinterno-della-condizione)
   - [else](#else)
   - [Annidamento](#annidamento)
@@ -27,7 +26,7 @@ In alcuni casi però, ci serve un modo per variare questo comportamento.
 
 Questi casi rientrano in Due macro categorie `Condizioni` e `Cicli`.
 
-## Core
+## Nucleo
 
 Possiamo scrivere porzioni di codice che vengono eseguite **SOLAMENTE** a patto che una condizione sia verificata.
 
@@ -50,25 +49,6 @@ if(5>2){
 }
 ```
 
-## Sintassi
-
-In C la sintassi per la condizione è 
-```cpp
-if (condizione) {}
-```
-
-Al posto di `condizione` devo avere un booleano o un *qualcosa* che abbia come risposta un booleano.
-
-Questo qualcosa è tipicamente una comparazione, nello specifico:
-
-1. `<`   minore
-2. `>`   maggiore
-3. `<=`  minore o uguale
-4. `>=`  maggiore o uguale
-5. `==`  uguali [^](#noGo "ricordiamo che un singolo uguale indica una ASSEGNAZIONE, si è quindi deciso di usarne due per indicare il significato matematico")
-6. `!=`  diversi
-
-Le graffe rappresentano il blocco di codice che verrà eseguito solo a patto che la condizione sia vera, può protrarsi per molte righe.
 
 ## Utilizzo variabili all'interno della condizione
 

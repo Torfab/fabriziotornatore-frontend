@@ -526,7 +526,7 @@ export default defineComponent({
       let lineSplitted = line.split(" ");
       let heading = lineSplitted[0].length;
       lineSplitted.shift();
-      return `<h${heading} id="${lineSplitted.join("-").trim().toLowerCase()}">${lineSplitted.join(" ")}</h${heading}>`;
+      return `<h${heading} id="${lineSplitted.join("-").trim().toLowerCase().replace("'","")}">${lineSplitted.join(" ")}</h${heading}>`;
     },
     updateMD(){
       try{

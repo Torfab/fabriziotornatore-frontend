@@ -2,15 +2,20 @@
   <div>
     <div class="blog-article">
       <div v-if="raw">
+        <div class="d-flex mt-2">
+          <ButtonNavigationItem v-if="previousPage" class="maxw-50" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem v-if="nextPage" class="ml-auto maxw-50" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+        </div>
+        <hr v-if="previousPage || nextPage">
         <MarkdownFormatter
           :raw="raw"
           @metadati="metadatiUpdated"
           @errorBuildingMD="errorBuildingMDHandler"
         ></MarkdownFormatter>
-        <hr>
+        <hr v-if="previousPage || nextPage">
         <div class="d-flex mb-5">
-          <ButtonNavigationItem v-if="previousPage" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
-          <ButtonNavigationItem v-if="nextPage" class="ml-auto" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem v-if="previousPage" class="maxw-50" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem v-if="nextPage" class="ml-auto maxw-50" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
         </div>
       </div>
       <div class="d-flex" style="height: 100%">
