@@ -28,11 +28,13 @@ jobs:
 
     - name: git-ftp push
       if: steps.build.outcome == 'success'
-      uses: sebastianpopp/ftp-action@releases/v2
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        host: ftps://ftp.fabriziotornatore.com
-        user: ${{ secrets.FTP_USR }}
+        server: ftp.fabriziotornatore.com
+        username: ${{ secrets.FTP_USR }}
         password: ${{ secrets.FTP_PWD }}
-        localDir: "dist"
-        remoteDir: "www.fabriziotornatore.com"
-        forceSsl: true
+        protocol: ftps
+        local-dir: dist/
+        server-dir: www.fabriziotornatore.com/
+        exclude: |
+          **/.htaccess
