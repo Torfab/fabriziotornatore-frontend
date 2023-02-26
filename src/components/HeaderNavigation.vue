@@ -80,7 +80,7 @@ export default defineComponent({
 
 .inner-header {
   display: flex;
-  max-width: 1280px;
+  max-width: 1240px;
   height: 100%;
 }
 

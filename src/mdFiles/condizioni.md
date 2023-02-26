@@ -1,8 +1,5 @@
 ---
-
 title: Condizioni
-previousPage: variabili - Variabili
-nextPage: cicli - Cicli
 ---
 # Condizioni 
 

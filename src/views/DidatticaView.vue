@@ -5,7 +5,7 @@
         title="Programmazione"
         image="pi-server"
         class="col-12 md:col-6"
-        @click="goTo('HUB_programmazione')"
+        @click="goTo('dispatcher/programmazione')"
       ></CardItem>
     </div>
   </div>

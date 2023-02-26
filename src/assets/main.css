@@ -38,6 +38,13 @@ a,
   transition: 0.4s;
 }
 
+
+.blog-article {
+  max-width: 650px;
+  margin: auto;
+}
+
+
 @media (min-width: 1024px) {
   body {
     place-items: center;
@@ -45,5 +52,9 @@ a,
 
   #app {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .blog-article {
+    padding: 0 2rem;
   }
 }

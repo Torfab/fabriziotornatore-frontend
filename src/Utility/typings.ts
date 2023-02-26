@@ -7,4 +7,11 @@ export interface MetadatiDidattica {
 export interface ArticleRoute {
   title: string;
   name: string;
+  subLink: Array<ArticleRoute>
+}
+
+export interface Didattica {
+  categoryTitle: string,
+  categoryName: string,
+  articles: Array<ArticleRoute>
 }

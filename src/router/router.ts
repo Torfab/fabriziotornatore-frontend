@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/DidatticaView.vue')
     },
     {
+      path: '/didattica/dispatcher/:category',
+      name: 'dispatcher',
+      component: () => import('../views/DispatcherView.vue')
+    },
+    {
       path: '/didattica/:article',
       name: 'didatticaArticle',
       component: () => import('../views/DidatticaArticleView.vue')
