@@ -3,21 +3,46 @@
     <div class="blog-article">
       <div v-if="raw">
         <div class="d-flex mt-2">
-          <ButtonNavigationItem v-if="previousPage" class="maxw-50" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
-          <ButtonNavigationItem v-if="nextPage" class="ml-auto maxw-50" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem
+            v-if="previousPage"
+            class="maxw-50"
+            direction="left"
+            :page="previousPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
+          <ButtonNavigationItem
+            v-if="nextPage"
+            class="ml-auto maxw-50"
+            direction="right"
+            :page="nextPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
         </div>
-        <hr v-if="previousPage || nextPage">
+        <hr v-if="previousPage || nextPage" />
         <MarkdownFormatter
           :raw="raw"
           @metadati="metadatiUpdated"
           @errorBuildingMD="errorBuildingMDHandler"
         ></MarkdownFormatter>
-        <hr v-if="previousPage || nextPage">
+        <hr v-if="previousPage || nextPage" />
         <div class="d-flex mb-5">
-          <ButtonNavigationItem v-if="previousPage" class="maxw-50" direction="left" :page="previousPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
-          <ButtonNavigationItem v-if="nextPage" class="ml-auto maxw-50" direction="right" :page="nextPage" @pressed="updateHistoryPage"></ButtonNavigationItem>
+          <ButtonNavigationItem
+            v-if="previousPage"
+            class="maxw-50"
+            direction="left"
+            :page="previousPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
+          <ButtonNavigationItem
+            v-if="nextPage"
+            class="ml-auto maxw-50"
+            direction="right"
+            :page="nextPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
         </div>
       </div>
+      <div v-if="loading">Loading</div>
       <div class="d-flex" style="height: 100%">
         <div v-if="error || notFound" class="article-error">
           <h1>{{ errorTitle }}</h1>
@@ -30,8 +55,8 @@
               <router-link :to="historyPage">Clicca qui</router-link>
               per andare alla pagina precedente o
             </span>
-            <router-link :to="{ name: 'home' }">Clicca qui</router-link> per
-            andare alla home
+            <router-link :to="{ name: 'didattica' }">Clicca qui</router-link> per
+            andare al dispatcher
           </div>
         </div>
       </div>
@@ -42,9 +67,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MarkdownFormatter from "@/components/MarkdownFormatter.vue";
-import ButtonNavigationItem from "@/components/ButtonNavigationItem.vue"
-import type { ArticleRoute, MetadatiDidattica } from "@/Utility/typings";
+import ButtonNavigationItem from "@/components/ButtonNavigationItem.vue";
+import type {
+  ArticleRoute,
+  Didattica,
+  MetadatiDidattica,
+} from "@/Utility/typings";
 import Clock from "@/components/Clock.vue";
+import didattica from "@/mdFiles/didattica.json";
 
 export default defineComponent({
   data() {
@@ -54,23 +84,24 @@ export default defineComponent({
       notFound: false,
       historyPage: undefined as string | undefined,
       metadati: {} as MetadatiDidattica,
-      oldParam: ""
+      oldParam: "",
+      didattica: didattica as Array<Didattica>,
     };
   },
   components: {
     MarkdownFormatter,
     Clock,
-    ButtonNavigationItem
+    ButtonNavigationItem,
   },
   methods: {
     updateHistoryPage(): void {
       this.historyPage = this.$route.params.article as string;
     },
     updateComponent(param: string) {
-      if(this.oldParam!=param){
-        this.raw="Loading";
+      if (this.oldParam != param) {
+        this.raw = undefined;
       }
-      this.oldParam=param;
+      this.oldParam = param;
       import(`@/mdFiles/${param}.md?raw`)
         .then((module: any) => {
           this.broke = false;
@@ -94,6 +125,45 @@ export default defineComponent({
         (this.$route.params.article as string) ||
         "Tornatore";
     },
+    findDidatticaNavigation(
+      elementToFind: string,
+      arrayDidattica: Array<Didattica>,
+      next: boolean
+    ) {
+      let aux = undefined;
+      for (let i = 0; i < arrayDidattica.length; i++) {
+        let element = arrayDidattica[i];
+        aux = this.findArticleNavigation(elementToFind, element.articles, next);
+        if (aux != undefined) {
+          return aux;
+        }
+      }
+      return undefined;
+    },
+    findArticleNavigation(
+      elementToFind: string,
+      arrayToCheck: Array<ArticleRoute>,
+      next: boolean
+    ): ArticleRoute | undefined {
+      let aux = undefined;
+      for (let i = 0; i < arrayToCheck.length; i++) {
+        let element = arrayToCheck[i];
+        if (element.name == elementToFind) {
+          if (next && i != arrayToCheck.length - 1) {
+            return arrayToCheck[i + 1];
+          }
+          if (!next && i != 0) {
+            return arrayToCheck[i - 1];
+          }
+          return undefined;
+        }
+        aux = this.findArticleNavigation(elementToFind, element.subLink, next);
+        if (aux != undefined) {
+          return aux;
+        }
+      }
+      return undefined;
+    },
   },
   beforeRouteEnter(to, from, next) {
     // When first entering the route
@@ -104,6 +174,7 @@ export default defineComponent({
     this.updateComponent((to as any).params.article);
     next();
   },
+
   computed: {
     error(): boolean {
       return this.broke || this.notFound;
@@ -139,55 +210,24 @@ export default defineComponent({
       return !this.raw && !this.error;
     },
     nextPage(): ArticleRoute | undefined {
-      if (this.metadati?.nextPage) {
-        let splitted = this.metadati.nextPage.split(" - ");
-        if (splitted.length == 1) {
-          return {
-            title: splitted[0],
-            name: splitted[0],
-          };
-        } else {
-          return {
-            title: splitted[1],
-            name: splitted[0],
-          };
-        }
-      }
-      return undefined;
+      return this.findDidatticaNavigation(
+        (this.$route as any).params.article,
+        this.didattica,
+        true
+      );
     },
     previousPage(): ArticleRoute | undefined {
-      if (this.metadati?.previousPage) {
-        let splitted = this.metadati.previousPage.split(" - ");
-        if (splitted.length == 1) {
-          return {
-            title: splitted[0],
-            name: splitted[0],
-          };
-        } else {
-          return {
-            title: splitted[1],
-            name: splitted[0],
-          };
-        }
-      }
-      return undefined;
+      return this.findDidatticaNavigation(
+        (this.$route as any).params.article,
+        this.didattica,
+        false
+      );
     },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.blog-article {
-  max-width: 650px;
-  margin: auto;
-
-}
-
-@media (min-width: 1024px){
-  .blog-article {
-    padding: 0 2rem;
-  }
-}
 .article-error {
   margin: auto;
 }

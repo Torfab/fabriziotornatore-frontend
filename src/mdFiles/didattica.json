@@ -1,0 +1,44 @@
+[
+  {
+    "categoryName": "programmazione",
+    "categoryTitle": "Programmazione",
+    "articles": [
+      {
+        "name": "introduzione",
+        "title": "Introduzione",
+        "subLink": []
+      },
+      {
+        "name": "variabili",
+        "title": "Variabili",
+        "subLink": []
+      },
+      {
+        "name": "condizioni",
+        "title": "Condizioni",
+        "subLink": []
+      },
+      {
+        "name": "cicli",
+        "title": "Cicli",
+        "subLink": []
+      },
+      {
+        "name": "sintesi",
+        "title": "Sintesi",
+        "subLink": [
+          {
+            "name": "cpp1",
+            "title": "Linguaggio C++",
+            "subLink": []
+          },
+          {
+            "name": "python1",
+            "title": "Linguaggio Python",
+            "subLink": []
+          }
+        ]
+      }
+    ]
+  }
+]

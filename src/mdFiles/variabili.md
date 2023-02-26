@@ -1,7 +1,5 @@
 ---
 title: Variabili
-previousPage: introduzione - Introduzione alla Programmazione
-nextPage: condizioni - Condizioni "if"
 ---
 # Variabili
 

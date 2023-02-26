@@ -1,8 +1,5 @@
 ---
 title: Cicli
-previousPage: condizioni - Condizioni
-nextPage: sintesi - Sintesi e linguaggi
-
 ---
 
 # Cicli

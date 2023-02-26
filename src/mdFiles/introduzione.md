@@ -1,7 +1,6 @@
 ---
 
 title: Introduzione
-nextPage: variabili - Variabili
 
 ---
 # Introduzione alla Programmazione
