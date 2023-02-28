@@ -16,7 +16,7 @@ const languages = {
   "python": {
     keyword:["import", "from", "def", "for", "in", "if", "continue", "elif", "else", "not", "and","or", "return", "break", "while"], 
     punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt);"], 
-    builtin:["set", "dict", "enumerate","range"], 
+    builtin:["set", "dict", "enumerate","range", "int", "str"], 
     operator: ["=", "/", "%", "+", "-", "*", ">", "&lt;"],
     comment: "#",
     directive: "directive"
