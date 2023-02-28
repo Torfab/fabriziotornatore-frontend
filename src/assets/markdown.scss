@@ -78,6 +78,7 @@ pre {
   background-color: var(--main-codeblock-bg);
   padding: 2px 2px  2px  15px;
   border-radius: 10px;
+  overflow: auto;
 }
 
 hr {
@@ -102,7 +103,7 @@ li>code{
 }
 
 code{
-  white-space: break-spaces
+  white-space: pre
 }
 
 td{

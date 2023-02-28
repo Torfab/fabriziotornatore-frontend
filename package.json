@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "dev-manu": "vite --host --port 80",
+    "dev-manu": "vite --host --port 3000",
     "build": "run-p build-only",
     "preview": "vite preview",
     "build-only": "vite build",
