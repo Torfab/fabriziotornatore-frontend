@@ -75,6 +75,9 @@ table {
 pre {
   margin-top: 15px;
   margin-bottom: 16px;
+  background-color: var(--main-codeblock-bg);
+  padding: 2px 2px  2px  15px;
+  border-radius: 10px;
 }
 
 hr {
@@ -88,12 +91,6 @@ hr {
 .markdown-body {
   max-width: 650px;
   margin: auto;
-}
-
-pre {
-  background-color: var(--main-codeblock-bg);
-  padding: 2px 2px  2px  15px;
-  border-radius: 10px;
 }
 
 p>code{

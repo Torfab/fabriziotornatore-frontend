@@ -13,7 +13,7 @@
           icon="bars"
         ></SimpleButton>
         <a href="/" class="favicon-header">
-          <img class="favicon-header-img" src="/favicon.svg"/>
+          <img class="favicon-header-img" src="/favicon.svg" alt="site logo">
         </a>
         <nav class="nav-bar">
           <RouterLink to="/">Home</RouterLink>

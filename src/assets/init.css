@@ -12,6 +12,10 @@
   --main-special-word: #800684;
   --secondary-bg-color: #e0e8f0;
   --height-header: 48px;
+  --color-background: var(--main-bg-color);
+  --color-text: var(--main-text-color);
+  --border-color: var(--main-border-color);
+  --link-color: var(--main-link-color);
 }
 
 @media (min-width: 1024px) {
@@ -51,16 +55,6 @@ html[data-theme='dark'] {
   -o-transition: background-color 0.5s, color 0.5s, border 0.5s;
   transition: background-color 0.5s, color 0.5s, border 0.5s;
 }
-
-
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--main-bg-color);
-  --color-text: var(--main-text-color);
-  --border-color: var(--main-border-color);
-  --link-color: var(--main-link-color);
-}
-
 
 *,
 *::before,

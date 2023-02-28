@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { defineComponent } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
 import HeaderNavigation from './components/HeaderNavigation.vue'
 
 

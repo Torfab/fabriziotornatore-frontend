@@ -52,5 +52,4 @@
 	background: transparent;
 	transform: translateX(var(--switch-on-handle-x)) scale(var(--switch-handle-scale));
 	box-shadow: inset -.1875em -.1875em 0 0 #fbe7ef, inset -.5625em -.5625em 0 0 #fffff7;
-	box-shadow: inset -.1875em -.1875em 0 0 #fbe7ef, inset -.5625em -.5625em 0 0 #fffff7;
 }
