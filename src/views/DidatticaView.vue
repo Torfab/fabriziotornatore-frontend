@@ -23,7 +23,6 @@ export default defineComponent({
     goTo(route: string){
       this.$router.push("/didattica/"+route)
     }
-    
   }
 });
 </script>

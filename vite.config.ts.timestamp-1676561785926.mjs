@@ -4,9 +4,9 @@ import { defineConfig } from "file:///D:/Github/fabriziotornatore-frontend/node_
 import Vue from "file:///D:/Github/fabriziotornatore-frontend/node_modules/@vitejs/plugin-vue/dist/index.mjs";
 import "file:///D:/Github/fabriziotornatore-frontend/node_modules/vite-plugin-md/dist/index.js";
 import "file:///D:/Github/fabriziotornatore-frontend/node_modules/md-powerpack/dist/index.js";
-import "file:///D:/Github/fabriziotornatore-frontend/node_modules/@vitejs/plugin-vue/dist/index.mjs";
-var __vite_injected_original_import_meta_url = "file:///D:/Github/fabriziotornatore-frontend/vite.config.ts";
-var vite_config_default = defineConfig({
+
+const __vite_injected_original_import_meta_url = "file:///D:/Github/fabriziotornatore-frontend/vite.config.ts";
+const vite_config_default = defineConfig({
   plugins: [
     Vue({
       include: [/\.vue$/]

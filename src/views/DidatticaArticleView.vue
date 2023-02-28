@@ -47,7 +47,7 @@
         <div v-if="error || notFound" class="article-error">
           <h1>{{ errorTitle }}</h1>
           <div class="d-flex">
-            <img class="m-auto" :src="errorImagePath" />
+            <img class="m-auto" :src="errorImagePath" alt="image of error"/>
           </div>
           {{ errorMessage }}
           <div>
@@ -73,7 +73,6 @@ import type {
   Didattica,
   MetadatiDidattica,
 } from "@/Utility/typings";
-import Clock from "@/components/Clock.vue";
 import didattica from "@/mdFiles/didattica.json";
 
 export default defineComponent({
@@ -90,7 +89,6 @@ export default defineComponent({
   },
   components: {
     MarkdownFormatter,
-    Clock,
     ButtonNavigationItem,
   },
   methods: {
@@ -105,7 +103,8 @@ export default defineComponent({
       import(`@/mdFiles/${param}.md?raw`)
         .then((module: any) => {
           this.broke = false;
-          (this.notFound = false), (this.raw = module.default);
+          this.notFound = false;
+          this.raw = module.default;
         })
         .catch(() => {
           window.document.title = "404 Not Found";

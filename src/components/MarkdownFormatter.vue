@@ -25,7 +25,7 @@ export default defineComponent({
       isParagraph: false,
       blockQuoteDeep: -1,
       continue: false,
-      kindOfOrderList: new Map() as Map<Number, String>,
+      kindOfOrderList: new Map() as Map<number, string>,
       totalRender: "",
       language: "python",
       isTable: false,
@@ -70,7 +70,7 @@ export default defineComponent({
       this.isParagraph=false;
       this.blockQuoteDeep=0;
       this.continue=false;
-      this.kindOfOrderList=new Map() as Map<Number, String>,
+      this.kindOfOrderList=new Map() as Map<number, string>;
       this.totalRender="";
       this.isTotalCode=false;
       this.language="python";
@@ -82,8 +82,6 @@ export default defineComponent({
       
     },
     checkBlockQuote(row: string){
-      let tempResult=""
-      
       let splitted=row.trimStart().split(" ")
       if(splitted[0]==">"){
         let currentDeep=0
@@ -96,32 +94,47 @@ export default defineComponent({
           }
           iteration=iteration+1
         }
-        while (currentDeep < this.blockQuoteDeep) {
-          tempResult += `</blockQuote>`;
-          this.blockQuoteDeep = this.blockQuoteDeep - 1;
-        }
-        if (currentDeep == this.blockQuoteDeep) {
-          if(iteration<splitted.length){
-            tempResult += `${this.renderRow(splitted.slice(currentDeep).join(" "))}`;
-          }
-          return tempResult
-        }
-        if (currentDeep == this.blockQuoteDeep + 1) {
-          this.blockQuoteDeep = this.blockQuoteDeep + 1;
-          tempResult += `<blockQuote>${this.renderRow(splitted.slice(currentDeep).join(" "))}`;
-          return tempResult;
+
+        let toRenderBlockQuote=this.renderBlockQuote(currentDeep, iteration, splitted)
+        if(toRenderBlockQuote!=null){
+          return toRenderBlockQuote
         }
       }
+      let toClose=this.closeBlockQuote()
+      if(toClose!=null)
+        return toClose
+      return
+    },  
+    renderBlockQuote(currentDeep: number, iteration: number, splitted: Array<string>): string | undefined{
+      let tempResult=""
+      while (currentDeep < this.blockQuoteDeep) {
+        tempResult += `</blockQuote>`;
+        this.blockQuoteDeep = this.blockQuoteDeep - 1;
+      }
+      if (currentDeep == this.blockQuoteDeep) {
+        if(iteration<splitted.length){
+          tempResult += `${this.renderRow(splitted.slice(currentDeep).join(" "))}`;
+        }
+        return tempResult
+      }
+      if (currentDeep >= this.blockQuoteDeep + 1) {
+        this.blockQuoteDeep = this.blockQuoteDeep + 1;
+        tempResult += `<blockQuote>${this.renderRow(splitted.slice(currentDeep).join(" "))}`;
+        return tempResult;
+      }
+      return undefined;
+    },
+    closeBlockQuote(){
+      let auxResult=undefined
       if(this.blockQuoteDeep > 0 && !this.isParagraph){
         this.continue=true;
         while (this.blockQuoteDeep > 0) {
-          tempResult += "</blockQuote>";
+          auxResult = "</blockQuote>";
           this.blockQuoteDeep = this.blockQuoteDeep - 1;
         } 
-        return tempResult
       }  
-      return
-    },  
+      return auxResult
+    },
     checkTable(row:string){
       if(row[0]!="|"){
         return
@@ -154,8 +167,8 @@ export default defineComponent({
     checkList(firstElement: string, row: string) {
       
       let tempResult=""
-      let unorderedList =firstElement.length==1 && firstElement.match(/\*|\-|\+/g)
-      let orderedList = firstElement.match(/[0-9]+\./g)
+      let unorderedList =firstElement.length==1 && firstElement.match(/[\*\-\+]/g)
+      let orderedList = firstElement.match(/\d+\./g)
       let currentKindOfOrderList= undefined
       let currentDeep = Math.floor(row.indexOf(firstElement) / 2)+1;
       if(unorderedList){
@@ -291,7 +304,16 @@ export default defineComponent({
         indexToCancel=8
       }
       if(indexToCancel!=0){
-        if(isLi){
+        return this.renderCodeLine(isLi, line, indexToCancel, firstTimeCode)
+      }
+      if(this.isCode && indexToCancel==0){
+        this.isCode=false;
+        return `</pre></code>`
+      }
+      return line
+    },
+    renderCodeLine(isLi:boolean, line: string, indexToCancel: number, firstTimeCode: boolean){
+      if(isLi){
           this.totalRender=this.totalRender.substring(0, this.totalRender.length-5)
           let element="p"
           if(line[4]==">"){
@@ -305,13 +327,6 @@ export default defineComponent({
         }
 
         return `${firstTimeCode?"<pre><code>":"\r\n"}${this.cleanLine(line.substring(indexToCancel))}`
-
-      }
-      if(this.isCode && indexToCancel==0){
-        this.isCode=false;
-        return `</pre></code>`
-      }
-      return line
     },
     renderLine(firstElement: string, line: string) {
       if(this.isParagraph) {
@@ -436,7 +451,7 @@ export default defineComponent({
       return tempResult+"\r\n"
     },
     renderWithoutFirstSpecialCharacters(firstElement: string, line:string){
-      if(firstElement.match(/\*|\-|\+|[0-9]\./g)){
+      if(firstElement.match(/\*|\-|\+|\d\./g)){
         let lineSplitted = line.trimStart().split(" ");
         lineSplitted.shift();
         line = lineSplitted.join(" ")
@@ -448,10 +463,36 @@ export default defineComponent({
         let isImage=line[line.indexOf("[")-1]=="!"
         let start=line.indexOf("[")+1
         let end= line.indexOf("]")
-        let realEnd=line.indexOf(")")
-        let ignore=false
-        let subline=line.substring(end)
-        for (var i = 0; i < subline.length; i++) {
+        let realEnd=this.findEndOfLineLink(line, end)
+
+        let slice=line.slice(start, end)
+        if(isImage){
+          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto article-image" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
+        } else {
+          let internalSplit=line.slice(end+2,realEnd).split(" ");
+          let tooltip=""
+          let kindOfLink=""
+          if(internalSplit[0][0]!='#'){
+            kindOfLink=`target="_blank"`
+          }
+          if(internalSplit.length>1){
+            internalSplit[1]=internalSplit[1].substring(1)
+            internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
+            tooltip=`v-tippy="'${internalSplit.slice(1).join(" ")}'"`
+            return `${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${kindOfLink}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
+          }else{
+            return `${this.spanFormat(line.slice(0, start-1))}<a ${kindOfLink} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
+          }
+        }
+      }
+      return this.spanFormat(line);
+    },
+    findEndOfLineLink(line: string, end: number ){
+      let ignore=false
+      let subline=line.substring(end)
+      let realEnd=line.indexOf(")")
+
+      for (let i = 0; i < subline.length; i++) {
           if(subline[i]=="\""){
             ignore= !ignore
           }
@@ -460,24 +501,7 @@ export default defineComponent({
             break;
           }
         }
-
-        let slice=line.slice(start, end)
-        if(isImage){
-          line=`${this.spanFormat(line.slice(0, start-2))}<div class="d-flex"><img class="m-auto article-image" src="${line.slice(end+2,realEnd)}" alt="${slice}"/></div>${this.buildLineLink(line.slice(realEnd+1))}`
-        } else {
-          let internalSplit=line.slice(end+2,realEnd).split(" ");
-          let tooltip=""
-          if(internalSplit.length>1){
-            internalSplit[1]=internalSplit[1].substring(1)
-            internalSplit[internalSplit.length-1]=internalSplit[internalSplit.length-1].substring(0, internalSplit[internalSplit.length-1].length-1)
-            tooltip=`v-tippy="'${internalSplit.slice(1).join(" ")}'"`
-            return `${this.spanFormat(line.slice(0, start-1))}<span class="tooltipMD" ${internalSplit[0][0]=='#'?'':'target="_blank"'}${tooltip}>${slice}</span>${this.buildLineLink(line.slice(realEnd+1))}`
-          }else{
-            return `${this.spanFormat(line.slice(0, start-1))}<a ${internalSplit[0][0]=='#'?'':'target="_blank"'} href="${internalSplit[0]}" ${tooltip}>${slice}</a>${this.buildLineLink(line.slice(realEnd+1))}`
-          }
-        }
-      }
-      return this.spanFormat(line);
+      return realEnd
     },
     cleanLine(line:string): string{
       return line.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
@@ -519,7 +543,8 @@ export default defineComponent({
 
       line=this.spanSingleEntity(line, /\`/g, "code", this.cleanLine)
       line=this.spanInsideTag(line, "code", /\*\*|__/g, "strong")
-      line=this.spanInsideTag(line, "code", /\*|\_/g, "em")
+      line=this.spanInsideTag(line, "code", /\~\~/g, "s")
+      line=this.spanInsideTag(line, "code", /[\*\_]/g, "em")
       return line
     },
     heading(line: string) {
