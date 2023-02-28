@@ -7,6 +7,7 @@
     - [Inserimento](#inserimento)
     - [Modifica](#modifica)
     - [Eliminazione](#eliminazione)
+    - [Ricerca](#ricerca)
     - [Sottoliste](#sottoliste)
     - [Raccomandazioni](#raccomandazioni)
     - [Navigazione](#navigazione)
@@ -184,6 +185,31 @@ Questa funzione inoltre ritorna il valore che ha appena tolto dalla lista, quind
 nomeLista=[10,20,30]
 a= nomeLista.pop()
 print(a, nomeLista)
+```
+
+### Ricerca
+
+Se vogliamo sapere se uno specifico elemento si trova all'interno di una lista basta usare l'operatore `in`
+
+```python
+nomeLista=[10,20,30,40,50]
+
+print(30 in nomeLista)
+```
+Il valore di ritorno di questa operazione è un booleano, quindi posso utilizzarla all'interno di un if
+
+```python
+nomeLista=[10,20,30,40,50]
+if(30 in nomeList):
+  print("trovato")
+```
+
+Se invece voglio sapere in che indice si trova posso usare la sua funzione `index(element)`, stiamo attenti che mi torna errore se non lo trova, quindi meglio assicurarci prima che esiste
+
+```python
+nomeLista=[10,20,30,40,50]
+if(30 in nomeList):
+  print("l'elemento si trova all'indice", nomeLista.index(30))
 ```
 
 ### Sottoliste
