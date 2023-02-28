@@ -106,7 +106,7 @@ Vedremo adesso la risposta a queste domande in tre casi pratici
 ### C
 
 1. I file avranno l'estenzione `.c`
-2. Devo esplicitamente `inserire lo standard output` e poi utilizzare la funzionalità `printf()`
+2. Devo esplicitamente `inserire lo standard output` e poi utilizzare la funzione `printf()`
 3. le operazioni finiscono sempre con un `;`
 4. I commenti di una linea si annunciano scrivendo `//`
 5. Verrà eseguito solamente il codice all'interno delle graffe di `int main(){}`
@@ -144,8 +144,8 @@ Notare che c++ è molto simile a c, difatti è una sorta di versione successiva 
 ### Python
 
 1. I file avranno l'estenzione `.py`
-2. posso usare direttamente la funzionalità `print()`
-3. le operazioni durante sempre un solo rigo, ogni operazione ha il suo rigo.
+2. posso usare direttamente la funzione `print()`
+3. le operazioni occupano sempre un solo rigo, ogni operazione ha il suo rigo.
 4. I commenti di una linea si annunciano scrivendo `#`
 5. Nulla
 

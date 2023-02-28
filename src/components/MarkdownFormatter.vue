@@ -165,7 +165,9 @@ export default defineComponent({
       }
     },
     checkList(firstElement: string, row: string) {
-      
+      if(this.isTotalCode){
+        return
+      }
       let tempResult=""
       let unorderedList =firstElement.length==1 && firstElement.match(/[\*\-\+]/g)
       let orderedList = firstElement.match(/\d+\./g)
