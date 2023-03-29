@@ -25,7 +25,7 @@ const languages = {
     keyword:["const", "import", "from", "def", "for", "in", "if", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float", "while"], 
     punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt|&amp);", "'"], 
     builtin:["cin", "cout"], 
-    operator: ["=", "/", "%", "+", "-", "&amp;", "&lt;", ">", "!", "|"],
+    operator: ["=", "/", "%", "+", "-", "&amp;", "&lt;", ">", "!", "|", "*"],
     comment: "//",
     directive: "#"
   } as Language,
