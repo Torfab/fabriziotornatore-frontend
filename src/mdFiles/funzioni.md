@@ -6,15 +6,20 @@ title: Funzioni
 
 - [Funzioni](#funzioni)
   - [Nucleo](#nucleo)
+  - [Pro e Contro](#pro-e-contro)
+    - [Pro](#pro)
+    - [Contro](#contro)
   - [Sintassi e Firma](#sintassi-e-firma)
-  - [Annidamento](#annidamento)
-  - [Controllo del ciclo](#controllo-del-ciclo)
-    - [Break](#break)
-    - [continue](#continue)
-  - [Sintassi alternativa](#sintassi-alternativa)
-    - [For](#for)
-    - [Do-While](#do-while)
-  - [Comprensione Pratica](#comprensione-pratica)
+  - [Funzioni già utilizzate](#funzioni-già-utilizzate)
+  - [Output e Tipo di ritorno](#output-e-tipo-di-ritorno)
+    - [Il tipo void](#il-tipo-void)
+  - [Naming della funzione](#naming-della-funzione)
+  - [Parametri](#parametri)
+    - [Posizione dei parametri](#posizione-dei-parametri)
+  - [Local Scope e Global Scope](#local-scope-e-global-scope)
+    - [Global Scope](#global-scope)
+  - [Funzioni Ricorsive](#funzioni-ricorsive)
+  - [Comprensione pratica](#comprensione-pratica)
 
 
 ## Nucleo
@@ -58,6 +63,25 @@ Rifrasiamo per capire meglio. La funzione, prenderà in ingresso degli input est
 
 SOLO in fase di definizione mi devo interessare di cosa mettere dentro per far si che la funzione si comporti come voluto.
 
+## Pro e Contro
+
+Da un punto di vista formale le funzioni non aggiungono nulla di nuovo all'interno della programmazione, semplicemente "estrae" delle parti.
+
+### Pro
+
+1. Leggiblità - Con un naming attento il codice principale diventa più leggibile perchè al posto di vedere operazioni e capire cosa fanno, devo solo leggere il nome della funzione e fidandomi che è scritta bene e che il nome della stessa sia semantico, mi rendo velocemnte conto di cosa sta succedendo.
+2. Scomposizione - Nel caso in cui l'obiettivo che voglio raggiungere è particolarmente ostico, possiamo dividere il problema in tanti sottoproblemi e risolverli separatamente, se ogni parte funziona come previsto, il risultato complessivo sarà corretto.
+3. Testabilità - pro figlio del punto precedente, piuttosto che cercare di capire dove si trova l'errore all'interno di un programma complesso è molto più facile accorgersi di un errore guardando una porzione più piccola.
+4. Delegabilità - Una volta stabiliti input e output, se si lavora in gruppo ogni persona può lavora ad un singolo sotto problema velocizzando i tempi di programmazione
+5. Librerie - Puoi mettere tutte le funzioni che vuoi all'interno di una libreria di funzione ed offrirle ad altri programmatori (o venderla), essi quidi non dovranno reinventarle ma possono usarle semplicemente. Le librerie che inseriamo in cima al file non sono altro che funzioni fatte da altri
+
+### Contro
+
+1. Quando si usano molte funzioni si rischia di perdersi nel codice e bisogna essere molto scrupolosi non perdendo alcun passaggio
+2. Avere un solo output rischia di essere limitante e bisogna attuare dei workaround che appesantiscono il codice
+3. Anche se in maniera minima ogni volta che si effettua una indirezione (e una funzione lo è) c'è un piccolo abbassamento di performance
+
+
 ## Sintassi e Firma
 
 In C la firma per le funzioni è composta da tre parti:
@@ -80,7 +104,9 @@ facendo invece un esempio esplicito
 float calcolaSconto(float valoreDiPartenza, float scontoDaApplicare)
 ```
 
-**Nota bene: si possono avere da 0 a infiniti parametri. Nel caso in cui se ne hanno 0 bisogna comunque inserire le parentesi tonde.**
+**Nota bene: si possono avere da 0 a 253 parametri. Nel caso in cui se ne hanno 0 bisogna comunque inserire le parentesi tonde.**
+
+In generale se si hanno più di 3 parametri i programmatori iniziano a storcere il naso, più di 10 vuol dire che è il momento di rimettere mano nel codice per semplificare la situazione
 
 ```cpp
 int battiCinque()
@@ -154,7 +180,7 @@ int main(){
 
 In questo esempio la nostra funzione viene chiamata due volte, e quindi a schermo apparirà due volte la scritta "Buongiorno".
 
-## nome della funzione - naming
+## Naming della funzione
 
 I nomi delle funzioni seguono le regole de nomi delle variabili quindi:
 
@@ -208,7 +234,7 @@ Nel secondo caso abbiamo usato la variabile *a* in input e abbiamo valorizzato l
 
 Nel terzo caso abbiamo utilizzato la stessa funzione come input. Prima viene risolta quella interna (il cui valore risultante è 13) e poi quella esterna che prenderà 13 come input (tornando 26)
 
-### posizione dei parametri
+### Posizione dei parametri
 
 Quando si ha più di un parametro il sistema utilizzerà la loro posizione per discenerli, facciamo un esempio
 
@@ -353,12 +379,22 @@ In questa funzione calcolo solamente un passaggio e moltiplico il numero dove so
 
 Questa cosa genererà 5 livelli di profondità (in questo caso facile da calcolare perchè sto calcolando il fattoriale di 5) e si fermerà quando incontra 1 in cui ritorna un numero secco, a quel punto risolve il penultimo livello (2 x 1), e tramite questo il terzultimo (3 x (2 x 1)) , e tramite questo il quartultimo eccetera eccetera.
 
-**NOTA BENE: se non avessi messo la condizione di uscita a n==1 in cui NON veniva chiamata la funzione ricorsiva ma un numero secco, il sistema avrebbe chiamato funzioni all'infinito fino all'inevitabile errore di stackoverflow, in questo senso bisogna stare attenti a mettere sempre la condizione di uscita**
+**NOTA BENE: se non avessi messo un return senza richiamo della funzione da qualche parte, in questo caso a n==1, il sistema avrebbe chiamato funzioni all'infinito fino all'inevitabile errore di stack overflow, in questo senso bisogna stare attenti a mettere sempre la condizione di uscita**
 
 In generale qualunque ricorsione si può riscrivere sottoforma di iterazione, anche se in molti casi non è semplice.
 
+## Comprensione pratica
 
-1. Quali sono le 3 sintassi utilizzaibili per eseguire dei cicli?
-2. A cosa serve la keyword break? A cosa serve la keyword continue?
-3. Scrivi, usando un ciclo, un programma che mi stampi ">" poi ">>" eccetera eccetera fino a 8
-4. Continua il programma precedente con un secondo ciclo che invece tolga ogni turno un ">" fino a che non ce ne sia neanche uno
+1. Cosa cambia tra la definizione di una funzione ed il suo utilizzo? Rispondi sia dal punto di vista concettuale che sintattico.
+2. Quali sono i pro e i contro dell'utilizzo delle funzioni?
+3. Cosa è la firma di una funzione, da che parti è composta?
+4. Cosa significa la keyword return?
+5. Abbiamo incontrato un nuovo tipo di dato, *void* in che caso si utilizza?
+6. Cosa possiamo mettere all'interno di un parametro?
+7. Quanti parametri possiamo avere in una funzione? Esplicita il valore minimo e il valore massimo
+8. Cosa si intende con Local Scope e Global Scope?
+9. Se inserisco una variabile in un parametro come faccio a essere sicuro che la funzione non me la modifichi?
+10. Spiega l'analogia della blackbox.
+11. Scrivi una funzione che prende in ingresso 10 parametri e ritorna in output la loro media
+12. Scrivi una funzione che converte gli euro - parametro in ingresso - in yen giapponesi - output - utilizza il tasso di cambio da google
+13. Cosa si intende con funzione ricorsiva?
