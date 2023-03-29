@@ -6,15 +6,20 @@ title: Funzioni
 
 - [Funzioni](#funzioni)
   - [Nucleo](#nucleo)
+  - [Pro e Contro](#pro-e-contro)
+    - [Pro](#pro)
+    - [Contro](#contro)
   - [Sintassi e Firma](#sintassi-e-firma)
-  - [Annidamento](#annidamento)
-  - [Controllo del ciclo](#controllo-del-ciclo)
-    - [Break](#break)
-    - [continue](#continue)
-  - [Sintassi alternativa](#sintassi-alternativa)
-    - [For](#for)
-    - [Do-While](#do-while)
-  - [Comprensione Pratica](#comprensione-pratica)
+  - [Funzioni già utilizzate](#funzioni-già-utilizzate)
+  - [Output e Tipo di ritorno](#output-e-tipo-di-ritorno)
+    - [Il tipo void](#il-tipo-void)
+  - [Naming della funzione](#naming-della-funzione)
+  - [Parametri](#parametri)
+    - [Posizione dei parametri](#posizione-dei-parametri)
+  - [Local Scope e Global Scope](#local-scope-e-global-scope)
+    - [Global Scope](#global-scope)
+  - [Funzioni Ricorsive](#funzioni-ricorsive)
+  - [Comprensione pratica](#comprensione-pratica)
 
 
 ## Nucleo
@@ -175,7 +180,7 @@ int main(){
 
 In questo esempio la nostra funzione viene chiamata due volte, e quindi a schermo apparirà due volte la scritta "Buongiorno".
 
-## nome della funzione - naming
+## Naming della funzione
 
 I nomi delle funzioni seguono le regole de nomi delle variabili quindi:
 
@@ -229,7 +234,7 @@ Nel secondo caso abbiamo usato la variabile *a* in input e abbiamo valorizzato l
 
 Nel terzo caso abbiamo utilizzato la stessa funzione come input. Prima viene risolta quella interna (il cui valore risultante è 13) e poi quella esterna che prenderà 13 come input (tornando 26)
 
-### posizione dei parametri
+### Posizione dei parametri
 
 Quando si ha più di un parametro il sistema utilizzerà la loro posizione per discenerli, facciamo un esempio
 
