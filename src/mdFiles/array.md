@@ -24,22 +24,112 @@ title: Array
 
 ## Nucleo
 
-Le funzioni ci permettono di estrapolare parti di codice, e di utilizzarle più facilmente nel codice principale.
+Gli array sono delle variabili speciali che ci permettono di contenere al loro interno più valori.
 
-Le riconosciamo perchè la sintassi è molto specifica, tale sintassi è definita `firma` della funziona ed è divisa in tre parti, facciamo un esempio:
+Se la variabile l'abbiamo rappresentata come uno scatolone, un array lo possiamo rappresentare come uno scaffale dove possiamo mettere tanti scatoloni
+
+### Inserire immagine di uno scaffale qui
+
+Per ritrovare lo scatolone utilizzeremo la posizione dell'array, o il "piano" dello scaffale.
+
+Ecco un esempio:
 
 ```cpp
-float calcolaSconto(float valoreDiPartenza, float scontoDaApplicare) {
-  float riduzioneSconto= valoreDiPartenza * scontoDaApplicare / 100;
-  return valoreDiPartenza-riduzioneSconto;
-}
 
-int main() {
-  printf("questa camica costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: ");
-  float camiciaScontata = calcolaSconto(40, 20);
-  printf("%f\n", camiciaScontata);
+int(main){
+  int arrayPersonale[3];
+
+  arrayPersonale[0] = 3;
+  arrayPersonale[1] = 5;
+  arrayPersonale[2] = 10;
+
+  for (int i=0; i<3; i++){
+    cout<<arrayPersonale[i];
+  }
+  
 }
 ```
+
+distinguiamo queste tre parti.
+
+1. La prima riga si legge così: "Da adesso esiste un array che può contenere tre elementi di tipo intero", metaforicamente "ho inserito uno scaffale di 3 piani
+
+2. Le seguenti tre righe servono per inserire i dati nell'array e si leggono così: "alla posizione 0 inserisco il valore 3, alla 1 il valore 5, alla 2 il valore 10", metaforicamente "ho inserito 3 scatoloni uno al piano terra, uno al primo piano e uno al secondo piano dello scaffale. **NOTA BENE: dato che gli scaffali partono dal piano terra(0), se ho N piani, l'ultimo piano è Quello al piano N-1 (se ho 3 piani l'ultimo è il secondo)
+
+3. Le seguenti tre righe servono per leggere tutti i dati dall'array e cicla tutte i piani dello scaffale, in ogni turno stampa il valore corrispondente. **NOTA BENE: Posso accedere anche ad un singolo dato in una posizione specifica mettendo tra quadre una posizione specifica. Se durante il ciclo trova un piano senza valore il sistema andrà in errore
+
+## Inizializzazione
+
+Nel nucleo abbiamo separato il momento di creazione, dal momento di inserimento dati.
+
+Esiste una "scorciatoia" per inizializzare un array ed inserire direttamente i dati e si scrive in questa maniera
+
+```cpp
+int(main){
+  int arr[5] = {13, 22, 3, 41, 35};
+}
+```
+
+I valori saranno quindi messi all'interno dell'array contestualmente alla loro posizione.
+
+## Modifica
+
+Essendo ogni singola posizione considerabile come una variabile a se stante, per modificarla bisogna solamente sovrascriverla.
+
+```cpp
+int(main){
+  int arr[2];
+  
+  arr[0]=4;
+  arr[1]=3;
+  //I valori all'interno dell'array in questo momento saranno [4,3]
+  
+  arr[0]=5;
+  //I valori all'interno dell'array in questo momento saranno [5,3]
+```
+
+## Scambio di posizione
+
+Essendo ogni singola posizione considerabile come una variabile a se stante, lo scambio di posizione è paragonabile allo scambio di valore tra due variabili, abbiamo quindi bisogno di una variabile ausiliaria per non perdere le informazioni dopo la prima sovrascrittura:
+
+```
+int(main){
+  int arr[3];
+  
+  arr[0]=6;
+  arr[1]=334;
+  arr[2]=51;
+  //I valori all'interno dell'array in questo momento saranno [6, 334, 51]
+  
+  int ausiliaria;
+  ausiliaria = arr[1];
+  arr[1] = arr[2];
+  arr[2] = ausiliaria
+  //I valori all'intenro dell'array in questo momento saranno [6, 51, 334]
+  //abbiamo scambiato i valori tra la posizione 1 e la posizione 2
+```
+
+## Puntatori
+
+Se stampate un array e vi scordate di inserire la posizione specifica che volete stampare, vedrete stampato un valore simile a questo
+
+```cpp
+0x505280
+```
+
+difatti, se è vero come è vero che un array contiene al suo interno diverse variabili, è anche vero che anche l'array in se e per se è una variabile.
+
+Il tipo di questa variabile si chiama `puntatore` spesso prende anhche il nome di `riferimento` ed è l'indirizzo di memoria dove è conservato l'array.
+
+Facendo un'analogia la memoria potrebbe essere un grande magazzino che contiene tanti scatoloni e scaffali e viene diviso in corridoi e posizioni, ogni corridoio conterrà molte posizioni.
+
+### Inserire immagine dall'alto di grandi magazzini
+
+Leggendo quindi il valore dell'array è come se dentro lo scatolone che contiene l'array non trovo tutto lo scaffale, bensì un biglietto con su scritto "corridoio 0, posizione 505280" e quando vado al corridoio 0 e alla sua posizione 505280, lì trovo lo scaffale davvero.
+
+Questo concetto è fondamentale nel mondo dell'informatica e molti problemi nel mondo della programmazione nascono dal non averli ben capiti.
+
+### KEEP CONTINUED
 
 Andiamo passo passo, Partiamo dal risultato.
 
