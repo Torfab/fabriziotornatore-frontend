@@ -18,7 +18,9 @@ Sostanzialmente, da un punto di vista metaforicamente atomico, **l'informatica �
 
 Qualunque algoritmo, qualunque videogioco, qualunque robot, non è altro che una serie di assegnazioni condizioni e ripetizioni magistralmente concatenati.
 
-Chiaramente l'informatica non è riassumibile in tre paginette, difatti utilizza concetti e strutture che vanno al di là di questi elementi, ma questi elementi sono gli `ATOMI` dell'informatica, e tutto il resto è stato inventato per `COMODITÀ`, non per `NECESSITÀ`
+Chiaramente l'informatica non è riassumibile in tre paginette, difatti utilizza concetti e strutture che vanno al di là di questi elementi, ma questi elementi sono gli `ATOMI` dell'informatica, e tutto il resto è stato inventato per `COMODITÀ`, non per `NECESSITÀ`.
+
+Per questo motivo da adesso ci sarà sempre un paragrafo dedicato ai motivi che hanno portato allo sviluppo delle altre funzionalità legate al mondo della programmazione.
 
 ## Linguaggi di Programmazione
 
