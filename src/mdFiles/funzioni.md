@@ -19,8 +19,6 @@ title: Funzioni
   - [Local Scope e Global Scope](#local-scope-e-global-scope)
     - [Global Scope](#global-scope)
   - [Funzioni Ricorsive](#funzioni-ricorsive)
-  - [Ordinamento](#ordinamento)
-  - [non so gli elementi](#non-so-gli-elementi)
   - [Comprensione pratica](#comprensione-pratica)
 
 
@@ -37,7 +35,7 @@ float calcolaSconto(float valoreDiPartenza, float scontoDaApplicare) {
 }
 
 int main() {
-  printf("questa camica costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: ");
+  printf("questa camicia costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: ");
   float camiciaScontata = calcolaSconto(40, 20);
   printf("%f\n", camiciaScontata);
 }
@@ -45,7 +43,7 @@ int main() {
 
 Andiamo passo passo, Partiamo dal risultato.
 
-l'output sarà "questa camica costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: 32"
+l'output sarà "questa camicia costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: 32"
 
 Nella parte iniziale del codice ho `definito` la funzione tramite la sua firma, e gli ho agganciato un blocco di codice, al solito lo riconosciamo grazie alle parentesi graffe.
 
@@ -385,11 +383,6 @@ Questa cosa genererà 5 livelli di profondità (in questo caso facile da calcola
 
 In generale qualunque ricorsione si può riscrivere sottoforma di iterazione, anche se in molti casi non è semplice.
 
-## Ordinamento
-
-Chiamato 
-
-## non so gli elementi
 
 ## Comprensione pratica
 
