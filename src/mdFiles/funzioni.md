@@ -6,7 +6,7 @@ title: Funzioni
 
 - [Funzioni](#funzioni)
   - [Nucleo](#nucleo)
-  - [Pro e Contro](#pro-e-contro)
+  - [Per quale motivo sono utili](#per-quale-motivo-sono-utili)
     - [Pro](#pro)
     - [Contro](#contro)
   - [Sintassi e Firma](#sintassi-e-firma)
@@ -35,7 +35,7 @@ float calcolaSconto(float valoreDiPartenza, float scontoDaApplicare) {
 }
 
 int main() {
-  printf("questa camica costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: ");
+  printf("questa camicia costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: ");
   float camiciaScontata = calcolaSconto(40, 20);
   printf("%f\n", camiciaScontata);
 }
@@ -43,7 +43,7 @@ int main() {
 
 Andiamo passo passo, Partiamo dal risultato.
 
-l'output sarà "questa camica costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: 32"
+l'output sarà "questa camicia costa 40 euro, ma grazie allo sconto del 20 per cento ora costa: 32"
 
 Nella parte iniziale del codice ho `definito` la funzione tramite la sua firma, e gli ho agganciato un blocco di codice, al solito lo riconosciamo grazie alle parentesi graffe.
 
@@ -63,9 +63,9 @@ Rifrasiamo per capire meglio. La funzione, prenderà in ingresso degli input est
 
 SOLO in fase di definizione mi devo interessare di cosa mettere dentro per far si che la funzione si comporti come voluto.
 
-## Pro e Contro
+## Per quale motivo sono utili
 
-Da un punto di vista formale le funzioni non aggiungono nulla di nuovo all'interno della programmazione, semplicemente "estrae" delle parti.
+Da un punto di vista formale le funzioni non aggiungono nulla di nuovo all'interno della programmazione, semplicemente ne "estrae" delle parti.
 
 ### Pro
 
@@ -77,8 +77,8 @@ Da un punto di vista formale le funzioni non aggiungono nulla di nuovo all'inter
 
 ### Contro
 
-1. Quando si usano molte funzioni si rischia di perdersi nel codice e bisogna essere molto scrupolosi non perdendo alcun passaggio
-2. Avere un solo output rischia di essere limitante e bisogna attuare dei workaround che appesantiscono il codice
+1. Quando si usano molte funzioni, soprattutto se una dentro l'altra e che viaggiano su più files, si rischia di perdersi nel codice e bisogna essere molto scrupolosi per capire cosa sta succedendo.
+2. Avere un solo output rischia di essere limitante e bisogna attuare dei workaround che appesantiscono il codice (alcuni linguaggi risolvono nativamente il problema)
 3. Anche se in maniera minima ogni volta che si effettua una indirezione (e una funzione lo è) c'è un piccolo abbassamento di performance
 
 
@@ -382,6 +382,7 @@ Questa cosa genererà 5 livelli di profondità (in questo caso facile da calcola
 **NOTA BENE: se non avessi messo un return senza richiamo della funzione da qualche parte, in questo caso a n==1, il sistema avrebbe chiamato funzioni all'infinito fino all'inevitabile errore di stack overflow, in questo senso bisogna stare attenti a mettere sempre la condizione di uscita**
 
 In generale qualunque ricorsione si può riscrivere sottoforma di iterazione, anche se in molti casi non è semplice.
+
 
 ## Comprensione pratica
 
