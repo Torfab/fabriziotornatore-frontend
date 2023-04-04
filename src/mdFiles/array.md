@@ -309,7 +309,7 @@ Dato che un array è una variabile che contiene variabili. Tecnicamente è possi
 
 Nella nostra metafora è come se una volta raggiunto lo scaffale all'indirizzo di memoria che trovo dentro la variabile principale, in ogni scatolone di ogni piano c'è a sua volta un altro indirizzo[^](#noGo, "in realtà cpp implementa in maniera tale che gli scaffali sono tutti vicini tra loro") su cui trovare lo scaffale riferito a quel piano.
 
-Gli array multidimensionali ci tornano molto utili ad esempio quando abbiamo a che fare con griglie 2D[^]("#noGo", " in realtà anche con le 3D, 4D eccetera, semplicemente bisognerà avere più dimensioni in dichiarazione")
+Gli array multidimensionali ci tornano molto utili ad esempio quando abbiamo a che fare con griglie 2D[^](#noGo, " in realtà anche con le 3D, 4D eccetera, semplicemente bisognerà avere più dimensioni in dichiarazione")
 
 Ad esempio ecco un possibile stralcio codice per rappresentare la griglia di tris
 
