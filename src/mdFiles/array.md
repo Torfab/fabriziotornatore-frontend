@@ -99,7 +99,7 @@ int(main){
   //I valori all'interno dell'array in questo momento saranno [5,3]
 ```
 
-## Scambio di posizione
+## Scambio di posizione degli elementi
 
 Essendo ogni singola posizione considerabile come una variabile a se stante, lo scambio di posizione è paragonabile allo scambio di valore tra due variabili, abbiamo quindi bisogno di una variabile ausiliaria per non perdere le informazioni dopo la prima sovrascrittura:
 
@@ -119,6 +119,18 @@ int(main){
   //I valori all'intenro dell'array in questo momento saranno [6, 51, 334]
   //abbiamo scambiato i valori tra la posizione 1 e la posizione 2
 ```
+
+## Ordinamento
+
+Una delle tipiche attività che si svolgono con gli array sono gli ordinamenti, avere i dati nel giusto ordine porta molti vantaggi, ma ordinarli non è una operazione immediata.
+
+In gergo tecnico prende il nome di `sorting` ed esistono vari algoritmi che affrontano il problema.
+
+Tra i più famosi il [bubble sort](https://it.wikipedia.org/wiki/Bubble_sort), il [quick sort] (https://it.wikipedia.org/wiki/Quicksort), [merge sort] (https://it.wikipedia.org/wiki/Merge_sort), ma ce ne sono [molti altri ancora](https://it.wikipedia.org/wiki/Algoritmo_di_ordinamento)
+
+Molti di questi si basano proprio sullo scambio di posizione
+
+### Inserire bubble sort
 
 ## Puntatori
 
@@ -203,7 +215,7 @@ Si vede facilmente se inizializzassimo la stringa con una sintassi un pò divers
 char greetings[] = {"H","E","L","L","O","\0"};
 ```
 
-\0 esattamente come \n è un carattere speciale, ed anche se è composto da "due" tasti della tastiera, per il sistema è considerato UN singolo carattere, per questo possiamo metterlo dentro char
+\0 esattamente come \n è un carattere speciale, ed anche se è composto da "due" tasti della tastiera, per il sistema è considerato UN singolo carattere, per questo possiamo metterlo dentro una variabile di tipo char.
 
 Notare quindi che la lunghezza di una stringa è sempre di una unità maggiore rispetto a quanto ci immaginiamo, dato che c'è questo carattere speciale invisibile alla fine.
 ### include string
