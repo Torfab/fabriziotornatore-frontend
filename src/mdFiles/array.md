@@ -236,7 +236,7 @@ float getAverage(int mioArray[], int size) {
   for (int i=0; i<size; i++){
     sommaElementi = sommaElementi+mioArray[i];
   }
-  return float(sommaElementi) / size
+  return (float) sommaElementi / size
 }
 
 int main(){

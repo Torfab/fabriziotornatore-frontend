@@ -22,7 +22,7 @@ const languages = {
     directive: "directive"
   } as Language,
   "cpp": {
-    keyword:["const", "import", "from", "def", "for", "in", "if", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float", "while"], 
+    keyword:["const", "import", "from", "def", "for", "in", "if", "continue", "elif", "else", "break", "return", "int", "bool", "using", "namespace", "string", "float", "while", "endl"], 
     punctuation:["(", ")", "[", "]", "{","}", ":", ",", "(?<!&lt|&amp);", "'"], 
     builtin:["cin", "cout"], 
     operator: ["=", "/", "%", "+", "-", "&amp;", "&lt;", ">", "!", "|", "*"],

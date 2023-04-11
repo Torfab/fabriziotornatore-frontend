@@ -49,6 +49,8 @@ if(5>2){
 
 ## Utilizzo variabili all'interno della condizione
 
+Partiamo dallo stesso esempio
+
 ```cpp
 if(4>5){
   printf("prima stampa");
@@ -112,28 +114,28 @@ Queste operazioni sono `and`, `or`, `not`, i risultati di queste operazioni sono
 
 L'operazione `And` viene indicata con `&&` Ha due operandi e risulta true solo se entrambi gli operandi sono true [^](#noGo "il tipo di tabelle qui di seguito prendono il nome di tabelle di verità"), corrisponde all'italiano logico `e`
 
-|Op1|  Op2 |Risultato|
-|....|.....|.....|
-|True| True | *True*|
-|False| True | False|
-|True| False | False|
-|False| False | False|
+|Op1|  Op2 ||Risultato|
+|....|.....||.....|
+|True| True || True|
+|False| True || False|
+|True| False || False|
+|False| False || False|
 
 L'operazione `Or` viene indicata con `||` Ha due operandi e risulta true in tutti quei casi in cui almeno un operando vale true, corrisponde all'italiano logico `o`
 
-|Op1|  Op2 |Risultato|
-|....|.....|.....|
-|True| True | *True*|
-|False| True | *True*|
-|True| False | *True*|
-|False| False | False|
+|Op1|  Op2 ||Risultato|
+|....|.....||.....|
+|True| True || True|
+|False| True || True|
+|True| False || True|
+|False| False || False |
 
 L'operazione `Not` viene indicata con `!` Ha UN operando e ribalta il suo valore.
 
-|Op1| Risultato|
-|....|.....|
-|True|  False|
-|False|  *True*|
+|Op1|| Risultato|
+|....||.....|
+|True||  False|
+|False|| True|
 
 Facendo l'esempio di sopra, adesso diventa
 
