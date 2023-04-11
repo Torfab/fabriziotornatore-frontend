@@ -135,7 +135,7 @@ Una delle tipiche attività che si svolgono con gli array sono gli ordinamenti, 
 
 In gergo tecnico prende il nome di `sorting` ed esistono vari algoritmi che affrontano il problema.
 
-Tra i più famosi il [bubble sort](https://it.wikipedia.org/wiki/Bubble_sort), il [quick sort] (https://it.wikipedia.org/wiki/Quicksort), [merge sort] (https://it.wikipedia.org/wiki/Merge_sort), ma ce ne sono [molti altri ancora](https://it.wikipedia.org/wiki/Algoritmo_di_ordinamento), e su youtube ci sono molte [visualizzazioni](https://www.youtube.com/watch?v=BeoCbJPuvSE) che mostrano il funzionamento da un punto di vista grafico, e la comparazione legata alle performance
+Tra i più famosi il [bubble sort](https://it.wikipedia.org/wiki/Bubble_sort), il [quick sort](https://it.wikipedia.org/wiki/Quicksort), [merge sort](https://it.wikipedia.org/wiki/Merge_sort), ma ce ne sono [molti altri ancora](https://it.wikipedia.org/wiki/Algoritmo_di_ordinamento), e su youtube ci sono molte [visualizzazioni](https://www.youtube.com/watch?v=BeoCbJPuvSE) che mostrano il funzionamento da un punto di vista grafico, e la comparazione legata alle performance
 
 Molti di questi si basano proprio sullo scambio di posizione, esploriamo ad esempio il bubble sort.
 
@@ -238,9 +238,18 @@ float getAverage(int mioArray[], int size) {
   }
   return float(sommaElementi) / size
 }
+
+int main(){
+  int customArray[2]= {5,3};
+  float risultato = getAverage(customArray, 2);
+}
 ```
 
 Notare che non serve passare il numero degli elementi nel parametro dell'array, anche se per scorrerlo ho bisogno di sapere quanto è grande, per cui l'ho passato come secondo parametro.
+
+Durante la definizione va specificato che si sta passando un array attraverso il tipo (quindi scrivendo le quadre).
+
+Quando la funzione viene richiamata basta il nome della funzione.
 
 ### Avvertenze nell'uso delle funzioni
 
