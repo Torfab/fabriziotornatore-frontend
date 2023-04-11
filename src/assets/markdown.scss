@@ -121,43 +121,69 @@ th{
   border-bottom: 1px solid var(--main-border-color)
 }
 
+html[data-theme='dark'] {
+  --main-code: rgb(156, 220, 254);
+  --main-string: rgb(206, 145, 120);
+  --main-operator: white;
+  --main-keyword: rgb(197, 134, 192);
+  --main-function: rgb(220, 220, 170);
+  --main-directive: rgb(181, 206, 168);
+  --main-number: rgb(181, 206, 168);
+  --main-punctuation: rgb(255, 215, 0);
+  --main-builtin: rgb(78, 201, 176);
+  --main-comment: rgb(106, 153, 85);
+}
+
+html[data-theme='light'] {
+  --main-code: #5b008e;
+  --main-string: #ae3c04;
+  --main-operator: black;
+  --main-keyword: #2000ff;
+  --main-function: #135b04;
+  --main-directive: #3e7d13;
+  --main-number: #018997;
+  --main-punctuation: #b02900;
+  --main-builtin: #ca0aac;
+  --main-comment: #3e7d13;
+}
+
 .language-python, .language-cpp, .language-javascript, .language-json {
-  color: rgb(156, 220, 254);
+  color: var(--main-code);
   .directive {
-    color: rgb(181, 206, 168);
+    color: var(--main-directive);
     .keyword {
-      color: rgb(181, 206, 168);
+      color: var(--main-directive);
     }
     .string {
-      color: rgb(181, 206, 168);
+      color: var(--main-directive);
     }
   }
   .string {
-    color: rgb(206, 145, 120)
+    color: var(--main-string)
   }
   .keyword {
-    color: rgb(197, 134, 192)
+    color: var(--main-keyword)
   }
   .number {
-    color: rgb(181, 206, 168)
+    color: var(--main-number)
   }
   
   .operator {
-    color: white
+    color: var(--main-operator)
   }
   .function {
-    color: rgb(220, 220, 170)
+    color: var(--main-function)
   }
   .builtin {
-    color: rgb(78, 201, 176)
+    color: var(--main-builtin)
   }
   .punctuation {
-    color: rgb(255, 215, 0)
+    color: var(--main-punctuation)
   }
   .comment {
-    color: rgb(106, 153, 85);
+    color: var(--main-comment);
     & .string {
-      color: rgb(106, 153, 85);
+      color: var(--main-comment);
     }
   }
 }
