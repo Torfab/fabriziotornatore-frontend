@@ -31,8 +31,8 @@ html[data-theme='light'] {
   --secondary-link-color: #007bff;
   --main-line-color: rgba(0, 0, 0, 0.125);
   --main-border-color: rgba(0,0,0, 0.4);
-  --main-codeblock-bg: rgba(170, 170, 170, 0.4);
-  --main-special-word: #800684;
+  --main-codeblock-bg: rgba(208, 208, 208, 0.4);
+  --main-special-word: #d75101;
   --secondary-bg-color: #e0e8f0;
 }
 

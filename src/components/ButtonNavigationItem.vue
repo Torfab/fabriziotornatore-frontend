@@ -1,6 +1,7 @@
 <template>
   <a :href="page.name" class="p-2 lastbutton d-flex" @click.prevent="updateHistoryPage()">
       <i v-if="direction=='left'" class="my-auto mr-3 pi pi-caret-left"></i>
+      <i v-if="direction=='center'" class="my-auto mr-3 pi pi-caret-up"></i>
       <div class="my-auto">{{ page.title }}</div>
       <i v-if="direction=='right'" class="my-auto ml-3 pi pi-caret-right"></i>
   </a>

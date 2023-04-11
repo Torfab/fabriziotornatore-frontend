@@ -11,6 +11,13 @@
             @pressed="updateHistoryPage"
           ></ButtonNavigationItem>
           <ButtonNavigationItem
+            v-if="upperPage"
+            class="mx-auto maxw-50"
+            direction="center"
+            :page="upperPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
+          <ButtonNavigationItem
             v-if="nextPage"
             class="ml-auto maxw-50"
             direction="right"
@@ -31,6 +38,13 @@
             class="maxw-50"
             direction="left"
             :page="previousPage"
+            @pressed="updateHistoryPage"
+          ></ButtonNavigationItem>
+          <ButtonNavigationItem
+            v-if="upperPage"
+            class="mx-auto maxw-50"
+            direction="center"
+            :page="upperPage"
             @pressed="updateHistoryPage"
           ></ButtonNavigationItem>
           <ButtonNavigationItem
@@ -139,6 +153,24 @@ export default defineComponent({
       }
       return undefined;
     },
+    findUpperDidatticaNavigation(
+      elementToFind: string,
+      arrayDidattica: Array<Didattica>,
+      next: boolean
+    ) {
+      let aux = undefined;
+      for (let i = 0; i < arrayDidattica.length; i++) {
+        let element = arrayDidattica[i];
+        aux = this.findUpperArticleNavigation(elementToFind, element.articles, next);
+        if(aux==true){
+          return undefined
+        }
+        if (aux != undefined) {
+          return aux;
+        }
+      }
+      return undefined;
+    },
     findArticleNavigation(
       elementToFind: string,
       arrayToCheck: Array<ArticleRoute>,
@@ -157,6 +189,27 @@ export default defineComponent({
           return undefined;
         }
         aux = this.findArticleNavigation(elementToFind, element.subLink, next);
+        if (aux != undefined) {
+          return aux;
+        }
+      }
+      return undefined;
+    },
+    findUpperArticleNavigation(
+      elementToFind: string,
+      arrayToCheck: Array<ArticleRoute>,
+      next: boolean
+    ): ArticleRoute | Boolean | undefined {
+      let aux = undefined;
+      for (let i = 0; i < arrayToCheck.length; i++) {
+        let element = arrayToCheck[i];
+        if (element.name == elementToFind) {
+          return true;
+        }
+        aux = this.findUpperArticleNavigation(elementToFind, element.subLink, next);
+        if (aux==true) {
+          return element;
+        }
         if (aux != undefined) {
           return aux;
         }
@@ -217,6 +270,13 @@ export default defineComponent({
     },
     previousPage(): ArticleRoute | undefined {
       return this.findDidatticaNavigation(
+        (this.$route as any).params.article,
+        this.didattica,
+        false
+      );
+    },
+    upperPage(): ArticleRoute | undefined {
+      return this.findUpperDidatticaNavigation(
         (this.$route as any).params.article,
         this.didattica,
         false
