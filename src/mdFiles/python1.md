@@ -42,7 +42,7 @@ I commenti multi riga sono incapsulati da tre [backtick](https://it.wikipedia.or
 
 ## Istruzioni
 
-Le istruzioni in python vengono distente dalle righe. Ogni rigo contiene UNA singola istruzione. 
+Le istruzioni in python vengono distinte dalle righe. Ogni rigo contiene UNA singola istruzione. 
 
 Si possono utilizzare i `;`[^](#noGo "io personalmente li uso spesso") se li ritenete più ordinati ma non servono.
 
@@ -278,7 +278,7 @@ while(True):
 
 In questo momento il ciclo è infinito, cerchiamo subito condizione di uscita, devo tenere traccia della somma di tutti i numeri inseriti fino a quel momento.
 
-NOTA presto attenzione se l'estremo è incluso o escluso, ovverosia se arrivo esattamente a 200 devo fermarmi o continuare?
+NOTA presto attenzione se l'estremo è incluso o escluso, ovvero sia se arrivo esattamente a 200 devo fermarmi o continuare?
 
 ```python
 accumulatore=0
