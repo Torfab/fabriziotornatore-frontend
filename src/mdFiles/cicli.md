@@ -49,6 +49,7 @@ while(i>3){
 i=1;
 while(i<=2){
   printf("io verrò ripetuto 2 volte");
+  i=i+1
 }
 ```
 
