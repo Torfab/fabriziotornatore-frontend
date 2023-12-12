@@ -86,7 +86,7 @@ Dato che è un file di testo esso potrà essere aperto da qualunque editor di te
 
 Tuttavia quando si programma è fortemente consigliato l'utilizzo di [IDE](https://it.wikipedia.org/wiki/Ambiente_di_sviluppo_integrato) poichè aggiungono delle funzionalità in più.
 
-Ad esempio il tipico IDe:
+Ad esempio il tipico IDE:
 - Riconosce il linguaggio di programmazione ed evidenzia le parole chiave con un colore specifico, o concetti diversi con colori diversi.
 - Ha un comodo accesso al `play` per avviare il programma scritto.
 - Evidenzia gli errori sia in fase di scrittura che in fase di avviamento

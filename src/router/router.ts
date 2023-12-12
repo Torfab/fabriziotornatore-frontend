@@ -19,14 +19,30 @@ const router = createRouter({
       component: () => import('../views/DidatticaView.vue')
     },
     {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogView.vue')
+    },
+    {
       path: '/didattica/dispatcher/:category',
-      name: 'dispatcher',
-      component: () => import('../views/DispatcherView.vue')
+      name: 'didatticaDispatcher',
+      component: () => import('../views/DidatticaDispatcherView.vue')
+    },
+    {
+      path: '/blog/dispatcher/:category',
+      name: 'blogDispatcher',
+      component: () => import('../views/BlogDispatcherView.vue')
     },
     {
       path: '/didattica/:article',
       name: 'didatticaArticle',
       component: () => import('../views/DidatticaArticleView.vue')
+    },
+
+    {
+      path: '/blog/:article',
+      name: 'blogArticle',
+      component: () => import('../views/BlogArticleView.vue')
     },
   ]
 })

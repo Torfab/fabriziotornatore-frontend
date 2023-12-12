@@ -1,4 +1,4 @@
-export interface MetadatiDidattica {
+export interface MetadatiDispatching {
   nextPage?: string,
   previousPage?: string,
   title?: string
@@ -10,7 +10,7 @@ export interface ArticleRoute {
   subLink: Array<ArticleRoute>
 }
 
-export interface Didattica {
+export interface ArticleDispatching {
   categoryTitle: string,
   categoryName: string,
   articles: Array<ArticleRoute>

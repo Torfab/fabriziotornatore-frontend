@@ -1,0 +1,23 @@
+[
+  {
+    "categoryName": "Advent of Code",
+    "categoryTitle": "Advent of Code",
+    "articles": [
+      {
+        "name": "introduzione",
+        "title": "Introduzione",
+        "subLink": []
+      },
+      {
+        "name": "2023day10",
+        "title": "2023 Day 10 Pipe Maze",
+        "subLink": []
+      },
+      {
+        "name": "2023day12",
+        "title": "2023 Day 12 Hot Springs",
+        "subLink": []
+      }
+    ]
+  }
+]
