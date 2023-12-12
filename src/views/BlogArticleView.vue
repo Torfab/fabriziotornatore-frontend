@@ -69,7 +69,7 @@
               <router-link :to="historyPage">Clicca qui</router-link>
               per andare alla pagina precedente o
             </span>
-            <router-link :to="{ name: 'didattica' }">Clicca qui</router-link> per
+            <router-link :to="{ name: 'blog' }">Clicca qui</router-link> per
             andare al dispatcher
           </div>
         </div>
@@ -87,7 +87,7 @@ import type {
   ArticleDispatching,
   MetadatiDispatching,
 } from "@/Utility/typings";
-import didattica from "@/mdFiles/didattica/didattica.json";
+import blog from "@/mdFiles/blog/blog.json";
 
 export default defineComponent({
   data() {
@@ -98,7 +98,7 @@ export default defineComponent({
       historyPage: undefined as string | undefined,
       metadati: {} as MetadatiDispatching,
       oldParam: "",
-      didattica: didattica as Array<ArticleDispatching>,
+      blog: blog as Array<ArticleDispatching>,
     };
   },
   components: {
@@ -114,7 +114,7 @@ export default defineComponent({
         this.raw = undefined;
       }
       this.oldParam = param;
-      import(`@/mdFiles/didattica/${param}.md?raw`)
+      import(`@/mdFiles/blog/${param}.md?raw`)
         .then((module: any) => {
           this.broke = false;
           this.notFound = false;
@@ -138,14 +138,14 @@ export default defineComponent({
         (this.$route.params.article as string) ||
         "Tornatore";
     },
-    findDidatticaNavigation(
+    findNavigation(
       elementToFind: string,
-      arrayDidattica: Array<ArticleDispatching>,
+      arrayBlog: Array<ArticleDispatching>,
       next: boolean
     ) {
       let aux = undefined;
-      for (let i = 0; i < arrayDidattica.length; i++) {
-        let element = arrayDidattica[i];
+      for (let i = 0; i < arrayBlog.length; i++) {
+        let element = arrayBlog[i];
         aux = this.findArticleNavigation(elementToFind, element.articles, next);
         if (aux != undefined) {
           return aux;
@@ -262,23 +262,23 @@ export default defineComponent({
       return !this.raw && !this.error;
     },
     nextPage(): ArticleRoute | undefined {
-      return this.findDidatticaNavigation(
+      return this.findNavigation(
         (this.$route as any).params.article,
-        this.didattica,
+        this.blog,
         true
       );
     },
     previousPage(): ArticleRoute | undefined {
-      return this.findDidatticaNavigation(
+      return this.findNavigation(
         (this.$route as any).params.article,
-        this.didattica,
+        this.blog,
         false
       );
     },
     upperPage(): ArticleRoute | undefined {
       return this.findUpperDidatticaNavigation(
         (this.$route as any).params.article,
-        this.didattica,
+        this.blog,
         false
       );
     },
