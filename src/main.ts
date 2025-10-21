@@ -9,7 +9,7 @@ import PrimeVue from 'primevue/config';
 // theme import replaced with local placeholders
 import '@/assets/primevue/saga-blue-theme.css'
 import '@/assets/primevue/primevue.min.css'                 //core css
-import 'primeicons/primeicons.css'                         //icons definitions
+import '@/assets/primevue/primeicons-cdn.css'             //icons from CDN
 import 'primeflex/primeflex.css'
 
 
