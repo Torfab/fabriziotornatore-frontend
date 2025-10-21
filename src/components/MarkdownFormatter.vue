@@ -224,43 +224,46 @@ export default defineComponent({
       let totalRender=""
       let splitted = row.trimStart().split(" ");
       let firstElement = splitted[0];
-        let skip = this.toggleMeta(firstElement);
-        if(firstElement===""){
-          totalRender=totalRender.concat(this.checkAndCloseParagraph())
+      if(firstElement){
+        firstElement=firstElement.trim()
+      }
+      let skip = this.toggleMeta(firstElement);
+      if(firstElement===""){
+        totalRender=totalRender.concat(this.checkAndCloseParagraph())
+      }
+      if (this.isMeta || skip) {
+        if(firstElement[firstElement.length-1]==":"){
+          (this.metadati as any)[firstElement.substring(0, firstElement.length-1)]= splitted.slice(1).join(" ")
         }
-        if (this.isMeta || skip) {
-          if(firstElement[firstElement.length-1]==":"){
-            (this.metadati as any)[firstElement.substring(0, firstElement.length-1)]= splitted.slice(1).join(" ")
-          }
-          return totalRender
-        }
+        return totalRender
+      }
 
-        let checkCode=this.checkCode(firstElement)
-        if(checkCode!=undefined){
-          return totalRender.concat(checkCode)
-        }
-        
-        let checkList=this.checkList(firstElement, row)
-        if(checkList!=undefined){
-          return totalRender.concat(checkList)
-        }
+      let checkCode=this.checkCode(firstElement)
+      if(checkCode!=undefined){
+        return totalRender.concat(checkCode)
+      }
+      
+      let checkList=this.checkList(firstElement, row)
+      if(checkList!=undefined){
+        return totalRender.concat(checkList)
+      }
 
-        let checkBreak=this.checkBreak(firstElement)
-        if(checkBreak!=undefined){
-          return totalRender.concat(checkBreak)
-        }
-        
-        let checkTable=this.checkTable(row)
-        if(checkTable!=undefined){
-          return totalRender.concat(checkTable)
-        }
-        if(this.isTable){
-          this.isTable=false;
-          this.tableLength=-1;
+      let checkBreak=this.checkBreak(firstElement)
+      if(checkBreak!=undefined){
+        return totalRender.concat(checkBreak)
+      }
+      
+      let checkTable=this.checkTable(row)
+      if(checkTable!=undefined){
+        return totalRender.concat(checkTable)
+      }
+      if(this.isTable){
+        this.isTable=false;
+        this.tableLength=-1;
 
-          totalRender=totalRender.concat("</table>")
-        }
-        return totalRender.concat(this.renderLine(firstElement, row))
+        totalRender=totalRender.concat("</table>")
+      }
+      return totalRender.concat(this.renderLine(firstElement, row))
     },
     renderRawMD(raw: string) {
       this.resetGlobals();
