@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'primeicons';
+    font-display: block;
+    src: url('https://unpkg.com/primeicons/fonts/primeicons.eot');
+    src: url('https://unpkg.com/primeicons/fonts/primeicons.eot?#iefix') format('embedded-opentype'),
+        url('https://unpkg.com/primeicons/fonts/primeicons.woff2') format('woff2'),
+        url('https://unpkg.com/primeicons/fonts/primeicons.woff') format('woff'),
+        url('https://unpkg.com/primeicons/fonts/primeicons.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

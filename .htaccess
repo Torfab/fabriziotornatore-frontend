@@ -1,0 +1,45 @@
+# Imposta i MIME types corretti per i font
+AddType application/x-font-woff .woff
+AddType application/x-font-woff2 .woff2
+AddType application/x-font-ttf .ttf
+AddType application/x-font-eot .eot
+
+# Abilita CORS per i font
+<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+        Header set Content-Type "application/font-woff" env=woff
+        Header set Content-Type "application/font-woff2" env=woff2
+        Header set Content-Type "application/x-font-ttf" env=ttf
+        Header set Content-Type "application/vnd.ms-fontobject" env=eot
+    </IfModule>
+</FilesMatch>
+
+# Gestione della cache per i font
+<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+    <IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresDefault "access plus 1 year"
+    </IfModule>
+
+    <IfModule mod_headers.c>
+        Header set Cache-Control "max-age=31536000, public"
+    </IfModule>
+</FilesMatch>
+
+# Redirect tutto a HTTPS se non lo è già
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Gestione SPA: reindirizza tutto a index.html tranne i file esistenti
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
